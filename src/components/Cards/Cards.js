@@ -17,12 +17,13 @@ class Cards extends Component {
     
         return (
             <ul>
-                {this.props.cardlist.map((item) => (
+                {/* {this.props.cardlist.map((item) => (
                     <li className="cards__item" key={item.id}>
                         {item.text}
                         <Main {...item} />
                     </li>
-                ))}
+                ))} */}
+                asdasd
           </ul>
         );
     } 

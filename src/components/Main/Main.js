@@ -7,7 +7,8 @@ class Main extends Component {
     constructor() {
         super();
         this.state = {
-            cardlist: [],
+            cardlist: []
+        
         };
     }
     componentDidMount() {
@@ -28,10 +29,10 @@ class Main extends Component {
     changeHandler = (e) => {
         this.setState({text: e.target.value});
     }
-    addPurpose (id) {
+    addPurpose () {
         store.dispatch({
-            type: input, 
-            cardId: id
+            type: input 
+            // cardId: id
           });
 
         
@@ -47,7 +48,7 @@ class Main extends Component {
                 <form onSubmit={this.onSubmit}>
                     <label>
                     <input 
-                        key={id}
+                        // key={id}
                         value={this.state.text}
                         className="input_main" 
                         placeholder="добавить цель"
@@ -56,7 +57,7 @@ class Main extends Component {
                         />
                         </label>
                     {/* <button type="submit" className="button_main"> */}
-                   <button onClick={() => this.addPurpose (id)}>
+                   <button onClick={() => this.addPurpose ()}>
                         ADD
                     </button>
                 </form>
