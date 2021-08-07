@@ -18,8 +18,11 @@ class Limit extends Component {
         let name = event.target.name; //получаем название поля
         let value = event.target.value; // получаем значение поля
   
-        this.setState({ [name]: value });
-        console.log({ [name]: value });
+        this.setState({ 
+          [name]: value,
+          taskResult: this.resultInput(name, value)
+        });
+        // console.log(this.state);
 
       };
     
@@ -32,8 +35,9 @@ class Limit extends Component {
         }
       }
 
-      resultInput() {
-        
+      resultInput(name, value) {
+        let data = {...this.state, [name]: value}
+        console.log(data)
       }
 
     render() { 
