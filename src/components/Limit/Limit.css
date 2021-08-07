@@ -1,0 +1,14 @@
+.purpose_made {
+    width: 350px;
+    border-radius: 10px;
+    border: 1px solid rgb(15, 15, 15);
+    background-color: rgb(25, 203, 235);
+    padding: 10px;
+    margin: 0 auto;
+}
+
+label {
+    padding: 5px;
+    display: block;
+}
+

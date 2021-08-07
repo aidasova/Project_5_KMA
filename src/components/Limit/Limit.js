@@ -9,7 +9,8 @@ class Limit extends Component {
           requiredAmount: "",
           targetTerm: "",
           startingAmount: "",
-          depositInterest: ""
+          depositInterest: "",
+          taskResult: "",
         };
       }
     
@@ -19,7 +20,7 @@ class Limit extends Component {
   
         this.setState({ [name]: value });
         console.log({ [name]: value });
-    
+
       };
     
       handlerSubmit(event) {
@@ -29,6 +30,10 @@ class Limit extends Component {
         } else {
           console.log("Вы не заполнили поля");
         }
+      }
+
+      resultInput() {
+        
       }
 
     render() { 
@@ -42,6 +47,7 @@ class Limit extends Component {
                         type="text"
                         value={this.state.requiredAmount}
                         onChange={this.handlerChange}
+                        placeholder="Необходимая сумма"
                         />
                     </label>
 
@@ -51,6 +57,7 @@ class Limit extends Component {
                         type="number"
                         value={this.state.targetTerm}
                         onChange={this.handlerChange}
+                        placeholder="Срок достижения"
                         />
                     </label>
 
@@ -60,6 +67,7 @@ class Limit extends Component {
                         type="number"
                         value={this.state.startingAmount}
                         onChange={this.handlerChange}
+                        placeholder="Стартовая сумма"
                         />
                     </label>
 
@@ -69,9 +77,19 @@ class Limit extends Component {
                         type="number"
                         value={this.state.depositInterest}
                         onChange={this.handlerChange}
+                        placeholder="Процент по вкладу"
+                        />
+                    </label>
+
+                    <label>
+                        <input
+                        name="taskResult"
+                        type="text"
+                        value={this.state.taskResult}
                         />
                     </label>
                 <input type="submit" value="Создать цель" />
+                <button>Вернуться назад</button>
                 </form>
             </div>
         );
