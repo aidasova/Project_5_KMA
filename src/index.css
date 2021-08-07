@@ -5,3 +5,17 @@ body, button, input {
     font-family: 'Roboto', 'Helvetica', sans-serif;
     color: #000807;
 }
+body {
+    padding: 50px;
+    background-color: rgb(75, 75, 114);
+}
+#root {
+    display: flex;
+    justify-content: center;
+}
+input, button {
+    background: #e6e3df;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+}
