@@ -22,20 +22,16 @@ class Limit extends Component {
     
       };
     
-      handlerSubmit(event) {
+      onSubmit(event) {
         event.preventDefault();
-        if (event.target.value === "") {
-          console.log("Карточка зарегистрирована");
-        } else {
-          console.log("Вы не заполнили поля");
-        }
+        
       }
 
     render() { 
         return (
             <div className="purpose_made">
                 
-                <form onSubmit={this.handlerSubmit}>
+                <form onSubmit={this.onSubmit}>
                     <label>
                         <input
                         name="requiredAmount"

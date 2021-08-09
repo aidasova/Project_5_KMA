@@ -2,45 +2,55 @@ import React, { Component } from 'react';
 import store from '../../reducer/store';
 import { input } from '../action/CardAction';
 import './Main.css';
+import Cards from '../Cards/Cards';
+
 
 class Main extends Component {
     constructor() {
         super();
         this.state = {
-            cardlist: []
-        
+            cardlist: [],
+            text: '',
+            newcard: {},
+            showlist: false,
+            id: ''
         };
     }
-    componentDidMount() {
-        let globalState = store.getState();
-        console.log(globalState);
-        this.setState({cardlist: globalState.cardlist});
-      }
+   
     componentDidMount() {
         store.subscribe(() => {
           //получить данные из глоб.состояния
           let globalState = store.getState();
           //обновить лок.состояние, чтобы компонент перерендерился
           this.setState ({
-            cardlist: globalState.card
+            cardlist: globalState.cardlist
           })
         });
+       
       }
     changeHandler = (e) => {
-        this.setState({text: e.target.value});
+        console.log(e.target.value)
+        let inputText = e.target.value
+        this.setState({
+            text: inputText,
+        });
+        
     }
-    addPurpose () {
+       
+    onSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state)
+        const input =  this.state
         store.dispatch({
-            type: input 
-            // cardId: id
+            type: input ,
+            payload: this.setState
           });
 
-        
-       // e.preventDefault();
+         
         }
     
     render() { 
-
+        const { text } = this.state;
         return (
     
             <div className="form_main">
@@ -48,18 +58,18 @@ class Main extends Component {
                 <form onSubmit={this.onSubmit}>
                     <label>
                     <input 
-                        // key={id}
                         value={this.state.text}
+                        name='input'
                         className="input_main" 
                         placeholder="добавить цель"
                         type="text"
                         onChange={this.changeHandler}
                         />
                         </label>
-                    {/* <button type="submit" className="button_main"> */}
-                   <button onClick={() => this.addPurpose ()}>
+                     <button type="submit" className="button_main"> 
                         ADD
                     </button>
+                 
                 </form>
                
             </div>

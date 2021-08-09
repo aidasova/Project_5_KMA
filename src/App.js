@@ -2,7 +2,6 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import MainPage from './pages/MainPage/MainPage';
 import ButtonPage from './pages/ButtonPage/ButtonPage';
-//import PurposePage from './pages/PurposePage/PurposePage';
 
 import './index.css';
 
