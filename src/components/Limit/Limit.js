@@ -20,7 +20,11 @@ class Limit extends Component {
         let name = event.target.name; //получаем название поля
         let initialValue = '';
 
-        if (event.target.name === 'depositInterest') {
+        let inputsForSaveInitialValue = [
+          'depositInterest'
+        ];
+
+        if (inputsForSaveInitialValue.includes(event.target.name)) {
           initialValue = event.target.value;
         }
 
