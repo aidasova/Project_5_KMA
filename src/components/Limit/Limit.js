@@ -18,11 +18,21 @@ class Limit extends Component {
     
       handlerChange = (event) => {
         let name = event.target.name; //получаем название поля
+        let initialValue = '';
+
+        if (event.target.name === 'depositInterest') {
+          initialValue = event.target.value;
+        }
+
         let value = Number(event.target.value); // получаем значение поля
 
+        // let allInputsFilled = ;
+        console.log(event.target.value);
+        console.log(value);
+        
         if (!isNaN(value)) {
           this.setState({ 
-            [name]: value,
+            [name]: initialValue ? initialValue : value,
             taskResult: this.resultInput(name, value),
             NameError: "",
             isValid: true,
