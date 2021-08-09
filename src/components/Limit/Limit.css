@@ -1,5 +1,6 @@
 .purpose_made {
-    width: 350px;
+    width: 320px;
+    height: 400px;
     border-radius: 10px;
     border: 1px solid rgb(15, 15, 15);
     background-color: rgb(25, 203, 235);
@@ -8,7 +9,31 @@
 }
 
 label {
+    display: flex;
     padding: 5px;
     display: block;
+    margin: 0px;
 }
 
+.error {
+    color: red;
+}
+
+input {
+    background-color: white;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    width: 300px;
+}
+
+.buttonBox {
+    background-color: rgb(175, 174, 174);
+    width: 302px;
+    border-radius: 5px;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 5px;
+}
