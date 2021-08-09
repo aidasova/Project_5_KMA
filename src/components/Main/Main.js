@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import store from '../../reducer/store';
-import { input } from '../action/CardAction';
+import { Link } from 'react-router-dom';
 import './Main.css';
-import Cards from '../Cards/Cards';
-
 
 class Main extends Component {
     constructor() {
@@ -11,21 +9,18 @@ class Main extends Component {
         this.state = {
             cardlist: [],
             text: '',
-            newcard: {},
             showlist: false,
             id: ''
         };
     }
    
     componentDidMount() {
-        store.subscribe(() => {
           //получить данные из глоб.состояния
           let globalState = store.getState();
           //обновить лок.состояние, чтобы компонент перерендерился
           this.setState ({
             cardlist: globalState.cardlist
           })
-        });
        
       }
     changeHandler = (e) => {
@@ -34,19 +29,19 @@ class Main extends Component {
         this.setState({
             text: inputText,
         });
-        
+        console.log(e.target.value)
     }
        
-    onSubmit = (e) => {
-        e.preventDefault();
+    buttonClick = (e) => {
+      //  e.preventDefault();
         console.log(this.state)
         const input =  this.state
-        store.dispatch({
-            type: input ,
-            payload: input.text
-          });
-
-         
+        
+        this.setState({
+            showlist: true,
+            //id: input
+        })
+        console.log(this.showlist)
         }
     
     render() { 
@@ -55,8 +50,8 @@ class Main extends Component {
     
             <div className="form_main">
                 <h3>Мои цели</h3>
-                <form onSubmit={this.onSubmit}>
-                    <label>
+                {/* <form onSubmit={this.onSubmit}>
+                    <label> */}
                     <input 
                         value={this.state.text}
                         name='input'
@@ -65,13 +60,16 @@ class Main extends Component {
                         type="text"
                         onChange={this.changeHandler}
                         />
-                        </label>
-                     <button type="submit" className="button_main"> 
+                        {/* </label> */}
+                     {/* <button type="submit" className="button_main"> 
                         ADD
-                    </button>
-                 
-                </form>
-               
+                    </button> */}
+                    {this.state.showList
+                    ? <Link to={'/1'}  className="btn">FORM</Link>
+                    : <button type="button" className="add" onClick={this.buttonClick} disabled={!text}>ADD</button>
+                }
+                {/* </form>
+                */}
             </div>
         );
     }
