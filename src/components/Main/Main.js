@@ -43,7 +43,7 @@ class Main extends Component {
         const input =  this.state
         store.dispatch({
             type: input ,
-            payload: this.setState
+            payload: input.text
           });
 
          
