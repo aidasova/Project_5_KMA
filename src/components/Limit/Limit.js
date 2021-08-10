@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Limit.css';
+import { Link } from 'react-router-dom';
+import store from '../../reducer/store';
 
 class Limit extends Component {
 
@@ -12,7 +14,14 @@ class Limit extends Component {
           depositInterest: ""
         };
       }
-    
+      componentDidMount() {
+        store.subscribe(() => {
+            const globalState = store.getState(); //получить данные из глобального состояния
+            this.setState({   //обновить локальное состояние
+                cardlist: globalState.cardlist
+            })
+        })
+    }
       handlerChange = (event) => {
         let name = event.target.name; //получаем название поля
         let value = event.target.value; // получаем значение поля
@@ -67,7 +76,11 @@ class Limit extends Component {
                         onChange={this.handlerChange}
                         />
                     </label>
-                <input type="submit" value="Создать цель" />
+                <input 
+                  type="submit" 
+                  value="Создать цель" 
+                  />
+                   <Link to={'/' }  className="btn">ADD</Link>
                 </form>
             </div>
         );
