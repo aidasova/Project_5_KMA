@@ -15,7 +15,21 @@ class Limit extends Component {
           isValid: false,
         };
       }
-    
+
+      checkAllInputsNotEpmty()  {
+        if (this.state.requiredAmount === "") {
+          return false;
+        } else if (this.state.targetTerm === "") {
+          return false;
+        } else if (this.state.startingAmount === "") {
+          return false;
+        } else if (this.state.depositInterest === "") {
+          return false;
+        } else {
+          return true;
+        }
+      }
+
       handlerChange = (event) => {
         let name = event.target.name; //получаем название поля
         let initialValue = '';
@@ -29,11 +43,9 @@ class Limit extends Component {
         }
 
         let value = Number(event.target.value); // получаем значение поля
-
         // let allInputsFilled = ;
-        console.log(event.target.value);
-        console.log(value);
-        
+        this.checkAllInputsNotEpmty(event.target.value) 
+
         if (!isNaN(value)) {
           this.setState({ 
             [name]: initialValue ? initialValue : value,
@@ -48,7 +60,7 @@ class Limit extends Component {
           })
         }
       };
-    
+      
       handlerSubmit(event) {
         event.preventDefault();
         if (event.target.value === "") {
@@ -121,7 +133,7 @@ class Limit extends Component {
                         placeholder="Сумма ежемесячного платежа"
                         />
                     </label>
-                <button type="submit" className="buttonBox">Создать цель</button>
+                <button type="submit" className="buttonBox" disabled={!this.state.isValid}>Создать цель</button>
                 <button className="buttonBox">Вернуться назад</button>
                 </form>
             </div>

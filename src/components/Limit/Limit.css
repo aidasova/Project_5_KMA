@@ -26,14 +26,19 @@ input {
     border-radius: 5px;
     border: none;
     width: 300px;
+    outline: none;
 }
 
 .buttonBox {
-    background-color: rgb(175, 174, 174);
+    background-color: rgb(219, 217, 217);
     width: 302px;
     border-radius: 5px;
     border: none;
     padding-top: 10px;
     padding-bottom: 10px;
     margin: 5px;
+}
+
+.buttonBox:disabled {
+    background-color: rgb(101, 117, 167);
 }
