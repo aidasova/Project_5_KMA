@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Cardlist.css';
 import store from '../../reducer/store';
 import Card from '../Card/Card';
+import Limit from '../Limit/Limit';
 
 class Cardlist extends Component {
   state = { 
@@ -26,7 +27,7 @@ class Cardlist extends Component {
         return (
             <div>
               {this.state.cardlist.map(item => (
-                <Card key={item.id} {...item} />
+                <Limit key={item.id} {...item} />
               ))}
              
           </div>
