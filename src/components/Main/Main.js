@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
 import './Main.css';
-import Cardlist from '../Cardlist/Cardlist';
 
 class Main extends Component {
     constructor() {
         super();
         this.state = {
             text: '',
-            cardlist: []
+           // cardlist: []
         };
     }
    
@@ -34,11 +33,10 @@ class Main extends Component {
     buttonClick = (e) => {
         e.preventDefault();
         console.log(this.state)
-        const input =  this.state
+       // const input =  this.state
         }
     
     render() { 
-        const { text } = this.state;
         return (
     
             <div className="form_main">
@@ -53,7 +51,6 @@ class Main extends Component {
                         />
                     <Link to={'/1'}  className="btn">ADD</Link>
                     {/* <button type="button" className="add" onClick={this.buttonClick} disabled={!text}>ADD</button> */}
-                    <Cardlist />
             </div>
         );
     }

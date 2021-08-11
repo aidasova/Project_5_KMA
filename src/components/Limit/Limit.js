@@ -35,15 +35,17 @@ class Limit extends Component {
       onSubmit = (event) => {
         event.preventDefault();
         console.log(this.state)
+        let cardPart = this.state
         store.dispatch({
             type: input,
-            payload: this.state //отправили в редьюсер
+            payload: cardPart //отправили в редьюсер
         })
       }
     render() { 
+        const {text} = this.props
         return (
             <div className="purpose_made">
-                
+                <div>{text}</div>
                 <form onSubmit={this.onSubmit}>
                     <label>
                         <input
@@ -84,7 +86,7 @@ class Limit extends Component {
                   type="submit" 
                   value="Создать цель" 
                   />
-                   <Link to={'/' }  className="btn">ADD</Link>
+                  <Link to={'/' }  className="btn">Временный возврат на главную</Link>
                 </form>
             </div>
         );

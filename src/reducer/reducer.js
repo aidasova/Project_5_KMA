@@ -16,8 +16,7 @@ function reducer(state = initialState, action) {
     if(action.type === input) {  //ввод новых значений в форму 
     let card = action.payload
     console.log(card)
-      return ({...state, cardlist: card})
-     
+      return ({...state, card})
     }  
    
       return state;
