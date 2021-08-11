@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Limit.css';
 import { Link } from 'react-router-dom';
 import store from '../../reducer/store';
+import {input} from '../action/CardAction'
 
 class Limit extends Component {
 
@@ -11,7 +12,7 @@ class Limit extends Component {
           requiredAmount: "",
           targetTerm: "",
           startingAmount: "",
-          depositInterest: ""
+          depositInterest: "",
         };
       }
       componentDidMount() {
@@ -31,11 +32,14 @@ class Limit extends Component {
     
       };
     
-      onSubmit(event) {
+      onSubmit = (event) => {
         event.preventDefault();
-        
+        console.log(this.state)
+        store.dispatch({
+            type: input,
+            payload: this.state //отправили в редьюсер
+        })
       }
-
     render() { 
         return (
             <div className="purpose_made">

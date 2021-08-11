@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import './Cards.css';
+import './Cardlist.css';
 import store from '../../reducer/store';
+import Card from '../Card/Card';
 
-class Cards extends Component {
-  
+class Cardlist extends Component {
+  state = { 
+    cardlist: [],
+    text: ''
+}
    componentDidMount() {
     let globalState = store.getState();
     //console.log(globalState);
@@ -20,17 +24,14 @@ class Cards extends Component {
     render() {
     
         return (
-            <ul className="list-group" id="purpose-list">
-                {/* {this.props.limit.map((item) => (
-                    <li className="cards__item" key={item.text}>
-                       
-                      
-                    </li>
-                ))} */}
-               // asdasd
-          </ul>
+            <div>
+              {this.state.cardlist.map(item => (
+                <Card key={item.id} {...item} />
+              ))}
+             
+          </div>
         );
     } 
 
 }
-export default Cards;
+export default Cardlist;

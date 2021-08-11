@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
 import './Main.css';
-import Cards from '../Cards/Cards';
+import Cardlist from '../Cardlist/Cardlist';
 
 class Main extends Component {
     constructor() {
         super();
         this.state = {
-            cardlist: [],
-            text: ''
+            text: '',
+            cardlist: []
         };
     }
    
     componentDidMount() {
-          //получить данные из глоб.состояния
+        store.subscribe(() => {
           let globalState = store.getState();
           //обновить лок.состояние, чтобы компонент перерендерился
           this.setState ({
             cardlist: globalState.cardlist
           })
-       
+        })
       }
     changeHandler = (e) => {
         console.log(e.target.value)
@@ -51,9 +51,9 @@ class Main extends Component {
                         type="text"
                         onChange={this.changeHandler}
                         />
-                    <Link to={'/1' }  className="btn">ADD</Link>
+                    <Link to={'/1'}  className="btn">ADD</Link>
                     {/* <button type="button" className="add" onClick={this.buttonClick} disabled={!text}>ADD</button> */}
-                    <Cards />
+                    <Cardlist />
             </div>
         );
     }

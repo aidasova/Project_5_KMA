@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './MainPage.css';
 import Main from '../../components/Main/Main';
-import Cards from '../../components/Cards/Cards';
+import Cardlist from '../../components/Cardlist/Cardlist';
 
 class MainPage extends Component {
     render() { 
         return (
             <div className="main-page">
                 <Main />
-                <Cards />
+                <Cardlist />
             </div>
         );
     }
