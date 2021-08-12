@@ -3,8 +3,8 @@ import {input} from '../components/action/CardAction'
 // import {toggle} from '../components/action/CardAction'
 
 let initialState = { 
-     cardlist: [],  // массив с целями
-        newcard: []
+    cardlist: [],  // массив с целями
+    cardItem: []
 }
 
 function reducer(state = initialState, action) {
@@ -17,6 +17,8 @@ function reducer(state = initialState, action) {
     let card = action.payload
     console.log(card)
       return ({...state, card})
+    // let card = state.cardItem.find(item => item.id === action.cardlist)
+    // console.log(card)
     }  
    
       return state;

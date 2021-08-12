@@ -9,10 +9,11 @@ class Limit extends Component {
     constructor() {
         super();
         this.state = {
+            cardItem: [{
           requiredAmount: "",
           targetTerm: "",
           startingAmount: "",
-          depositInterest: "",
+          depositInterest: ""}]
         };
       }
       componentDidMount() {
