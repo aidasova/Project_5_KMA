@@ -1,25 +1,18 @@
 // import {Component} from 'react';
-// //import store from '../../reducer/store';
-// //import {input} from '../components/action/CardAction'
+// import store from '../../reducer/store';
+// import {input, add} from '../components/action/CardAction'
 // import Limit from '../Limit/Limit';
-// //import {onSubmit} from '../Limit/Limit';
+// import Card from 
+
 // class Card extends Component {
 
-// // onSubmit = (cardPart) => {
-// //     store.dispatch({
-// //         type: add,
-// //         payload: cardPart
-        
-// //     })
-// // }
-
 //     render() {
-//         const {text, requiredAmount, targetTerm, startingAmount, depositInterest  } = this.props
+//         const {text, requiredAmount, targetTerm, startingAmount, depositInterest, id  } = this.props
 //         return (
-//             <div>
+//             <div key={id}>
 //                 <div>{text}</div>
 //                 <div>{requiredAmount}</div>
-
+//                 <button onClick={() => this.addCard(id)}>addCard</button>
 //             </div>
 //         )
 //     }
