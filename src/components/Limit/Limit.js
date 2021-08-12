@@ -26,7 +26,7 @@ class Limit extends Component {
         } else if (this.state.depositInterest === "") {
           return false;
         } else {
-          return true;
+          return true
         }
       }
 
@@ -44,14 +44,12 @@ class Limit extends Component {
 
         let value = Number(event.target.value); // получаем значение поля
         // let allInputsFilled = ;
-        this.checkAllInputsNotEpmty(event.target.value) 
+        this.checkAllInputsNotEpmty() 
 
         if (!isNaN(value)) {
           this.setState({ 
             [name]: initialValue ? initialValue : value,
-            taskResult: this.resultInput(name, value),
-            NameError: "",
-            isValid: true,
+            taskResult: true ? this.resultInput(name, value) : false,
           });
         } else {
           this.setState({
