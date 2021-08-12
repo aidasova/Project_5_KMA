@@ -41,7 +41,8 @@ class Main extends Component {
         return (
     
             <div className="form_main">
-                <h3>Мои цели</h3>
+                <h3 className="title">Мои цели</h3>
+                <div className="block_input">
                     <input 
                         value={this.state.text}
                         name='input'
@@ -50,8 +51,9 @@ class Main extends Component {
                         type="text"
                         onChange={this.changeHandler}
                         />
-                    <Link to={'/1'}  className="btn">ADD</Link>
+                    <Link to={'/1'}  className="btn_add">ADD</Link>
                     {/* <button type="button" className="add" onClick={this.buttonClick} disabled={!text}>ADD</button> */}
+                </div>
             </div>
         );
     }

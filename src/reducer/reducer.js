@@ -3,8 +3,9 @@ import {input} from '../components/action/CardAction'
 // import {toggle} from '../components/action/CardAction'
 
 let initialState = { 
-    cardlist: [],  // массив с целями
-    cardItem: []
+    cardItem: [],
+    cardlist: []
+    
 }
 
 function reducer(state = initialState, action) {
@@ -16,7 +17,7 @@ function reducer(state = initialState, action) {
     if(action.type === input) {  //ввод новых значений в форму 
     let card = action.payload
     console.log(card)
-      return ({...state, card})
+      return ({...state.cardItem, card})
     // let card = state.cardItem.find(item => item.id === action.cardlist)
     // console.log(card)
     }  

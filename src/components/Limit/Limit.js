@@ -9,13 +9,12 @@ class Limit extends Component {
     constructor() {
         super();
         this.state = {
-            cardItem: [{
           requiredAmount: "",
           targetTerm: "",
           startingAmount: "",
-          depositInterest: ""}]
-        };
-      }
+          depositInterest: ""
+        }
+     }
       componentDidMount() {
         store.subscribe(() => {
             const globalState = store.getState(); //получить данные из глобального состояния
@@ -39,7 +38,7 @@ class Limit extends Component {
         let cardPart = this.state
         store.dispatch({
             type: input,
-            payload: cardPart //отправили в редьюсер
+            payload: cardPart//отправили в редьюсер
         })
       }
     render() { 
@@ -47,9 +46,10 @@ class Limit extends Component {
         return (
             <div className="purpose_made">
                 <div>{text}</div>
-                <form onSubmit={this.onSubmit}>
+                <form className="form" onSubmit={this.onSubmit}>
                     <label>
                         <input
+                        className="form_input"
                         name="requiredAmount"
                         type="text"
                         value={this.state.requiredAmount}
@@ -59,6 +59,7 @@ class Limit extends Component {
 
                     <label>
                         <input
+                        className="form_input"
                         name="targetTerm"
                         type="number"
                         value={this.state.targetTerm}
@@ -68,6 +69,7 @@ class Limit extends Component {
 
                     <label>
                         <input
+                        className="form_input"
                         name="startingAmount"
                         type="number"
                         value={this.state.startingAmount}
@@ -77,6 +79,7 @@ class Limit extends Component {
 
                     <label>
                         <input
+                        className="form_input"
                         name="depositInterest"
                         type="number"
                         value={this.state.depositInterest}
@@ -84,6 +87,7 @@ class Limit extends Component {
                         />
                     </label>
                 <input 
+                 className="form_submit"
                   type="submit" 
                   value="Создать цель" 
                   />

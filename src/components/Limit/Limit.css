@@ -1,0 +1,22 @@
+.form_input {
+    margin: 20px;
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    width: 260px;
+    border: none;
+    outline: none;
+  }
+  .form_submit {
+    text-align: center;
+    width: 280px;
+    margin: 10px auto;
+    padding: 1em;
+    border: none;
+    box-shadow:
+     0 1px 4px rgba(50,50,50,0.3),
+     23px 0 20px -23px rgba(231, 231, 231, 0.8),
+     0 0 40px rgba(173, 172, 172, 0.1) inset;
+  }
+  
+  
