@@ -3,6 +3,7 @@ import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
 import './Main.css';
 
+// Основной класс
 class Main extends Component {
     constructor() {
         super();
