@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
 import './Main.css';
+import {input} from '../action/CardAction';
 
 // Основной класс
 class Main extends Component {
     constructor() {
         super();
         this.state = {
-            text: '',
-           // cardlist: []
+            text: ''
         };
     }
    
     componentDidMount() {
         store.subscribe(() => {
           let globalState = store.getState();
-          //обновить лок.состояние, чтобы компонент перерендерился
           this.setState ({
             cardlist: globalState.cardlist
           })
@@ -32,14 +31,19 @@ class Main extends Component {
     }
        
     buttonClick = (e) => {
-        e.preventDefault();
+       // e.preventDefault();
         console.log(this.state)
-       // const input =  this.state
+        const text =  this.state
+        store.dispatch({
+            type: input,
+            payload: text,//отправили в редьюсер
+        })
         }
     
     render() { 
+        const {inputText, requiredAmount, targetTerm, startingAmount, depositInterest } = this.props
         return (
-    
+            <div>
             <div className="form_main">
                 <h3 className="title">Мои цели</h3>
                 <div className="block_input">
@@ -51,11 +55,13 @@ class Main extends Component {
                         type="text"
                         onChange={this.changeHandler}
                         />
-                    <Link to={'/1'}  className="btn_add">ADD</Link>
-                    {/* <button type="button" className="add" onClick={this.buttonClick} disabled={!text}>ADD</button> */}
+                    <Link to={'/1'} onClick={()=>this.buttonClick()} className="btn_add">ADD</Link>
                 </div>
             </div>
-        );
+      
+            </div>
+        )
+           
     }
 }
 export default Main;

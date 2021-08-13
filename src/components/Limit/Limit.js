@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Limit.css';
 import { Link } from 'react-router-dom';
 import store from '../../reducer/store';
-import {input} from '../action/CardAction'
+import {input} from '../action/CardAction';
 
 class Limit extends Component {
 
@@ -26,26 +26,29 @@ class Limit extends Component {
       handlerChange = (event) => {
         let name = event.target.name; //получаем название поля
         let value = event.target.value; // получаем значение поля
-  
-        this.setState({ [name]: value });
+        let inputText = this.props.inputText
+        this.setState({ 
+            [name]: value,
+            id: inputText
+        });
         console.log({ [name]: value });
-    
       };
     
       onSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state)
+        // console.log(this.state)
         let cardPart = this.state
         store.dispatch({
             type: input,
-            payload: cardPart//отправили в редьюсер
+            payload: cardPart,//отправили в редьюсер
+
         })
       }
     render() { 
-        const {text} = this.props
+      const {inputText} = this.props
         return (
             <div className="purpose_made">
-                <div>{text}</div>
+                <div>{inputText}</div>
                 <form className="form" onSubmit={this.onSubmit}>
                     <label>
                         <input
