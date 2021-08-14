@@ -13,6 +13,7 @@ class Limit extends Component {
           depositInterest: "",
           taskResult: "",
           NameError: "",
+          NameErrorSum: "",
           nameTarget: "",
           isValid: false,
         };
@@ -20,22 +21,20 @@ class Limit extends Component {
 
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
-          return false;
+          return false
         } else if (newState.targetTerm === "") {
-          return false;
+          return false
         } else if (newState.startingAmount === "") {
-          return false;
+          return false
         } else if (newState.depositInterest === "") {
-          return false;
-        } else {
-          this.setState({isValid: true})
-          return true
-        }
+          return false
+        } 
+        return true
       }
 
       handlerChange = (event) => {
         let name = event.target.name; //получаем название поля
-        let value = Number(event.target.value); // получаем значение поля
+        let value = event.target.value ? Number(event.target.value) : ""; // получаем значение поля
         let newState = {...this.state, [name]: value};
         let initialValue = '';
 
@@ -47,13 +46,20 @@ class Limit extends Component {
           initialValue = value;
         }
 
-        // let allInputsFilled = ;
-        let checkAllInputsNotEpmty = this.checkAllInputsNotEpmty(newState) 
+        let allInputsNotEpmty = this.checkAllInputsNotEpmty(newState) 
+        
+        if (newState.requiredAmount < newState.startingAmount) {
+          this.setState({NameErrorSum: "Сумма цели, меньше суммы вложенний", isValid: false,})
+        } else {
+          this.setState({NameErrorSum: ""})
+        }
 
         if (!isNaN(value)) {
           this.setState({ 
             [name]: initialValue ? initialValue : value,
-            taskResult: checkAllInputsNotEpmty ? this.resultInput(newState) : '',
+            taskResult: allInputsNotEpmty ? this.resultInput(newState) : '',
+            isValid: allInputsNotEpmty && newState.nameTarget !== "" ? true : false,
+            NameError: "",
           });
         } else {
           this.setState({
@@ -63,6 +69,18 @@ class Limit extends Component {
         }
       };
       
+      nameNewTarget = (event) => {
+        let name = event.target.name;
+        let value = event.target.value;
+        if ( value !== '' ) {
+          this.setState({[name]: value,
+            isValid: this.checkAllInputsNotEpmty(this.state) ? true : false,
+          });
+        } else {
+          this.setState({isValid: false, nameTarget: "",});
+        }
+      }
+
       handlerSubmit(event) {
         event.preventDefault();
         if (event.target.value === "") {
@@ -72,19 +90,24 @@ class Limit extends Component {
         }
       }
       // https://law03.ru/kalkulyator/nakoplenij_deneg 
+
       resultInput(newState) {
-        // let data = {...this.state, [name]: value};
         let persent = newState.depositInterest / 100; // Расчет процента
         let resultSum1 = newState.requiredAmount - newState.startingAmount * (1 + persent / 12)**newState.targetTerm;
         let resultsum2 = (1 + persent / 12)**newState.targetTerm - 1;
-        let resultsum3 = persent / 12 * (resultSum1 / resultsum2)
-        return resultsum3.toFixed(2);
+        let resultsum3 = persent / 12 * (resultSum1 / resultsum2);
+        if (resultsum3 < 0) {
+          return resultsum3 = '';
+        } else {
+          return resultsum3.toFixed(2);
+        }
       }
 
     render() { 
         return (
             <div className="purpose_made">
               <div className="error">{this.state.NameError}</div>
+              <div className="error">{this.state.NameErrorSum}</div>
                 <form onSubmit={this.handlerSubmit}>
                     <label>
                         Сумма для достижения цели 
@@ -141,6 +164,7 @@ class Limit extends Component {
                         name="nameTarget"
                         type="text"
                         value={this.state.nameTarget}
+                        onChange={this.nameNewTarget}
                         placeholder="Название цели"
                         />
                     </label>
