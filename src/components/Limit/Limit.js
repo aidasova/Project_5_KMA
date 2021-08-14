@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Limit.css';
 
+// Форма создания Цели *
 class Limit extends Component {
 
     constructor() {
