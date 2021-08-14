@@ -48,18 +48,15 @@ class Limit extends Component {
 
         let allInputsNotEpmty = this.checkAllInputsNotEpmty(newState) 
         
-        if (newState.requiredAmount < newState.startingAmount) {
-          this.setState({NameErrorSum: "Сумма цели, меньше суммы вложенний", isValid: false,})
-        } else {
-          this.setState({NameErrorSum: ""})
-        }
+        let requiredSumCorrect = newState.requiredAmount > newState.startingAmount;
 
         if (!isNaN(value)) {
           this.setState({ 
             [name]: initialValue ? initialValue : value,
             taskResult: allInputsNotEpmty ? this.resultInput(newState) : '',
-            isValid: allInputsNotEpmty && newState.nameTarget !== "" ? true : false,
+            isValid: allInputsNotEpmty && newState.nameTarget !== "" && requiredSumCorrect ? true : false,
             NameError: "",
+            NameErrorSum: !requiredSumCorrect ? "Сумма цели, меньше суммы вложенний" : ""
           });
         } else {
           this.setState({
@@ -72,10 +69,14 @@ class Limit extends Component {
       nameNewTarget = (event) => {
         let name = event.target.name;
         let value = event.target.value;
+        let requiredSumCorrect = this.state.requiredAmount > this.state.startingAmount;
+
         if ( value !== '' ) {
-          this.setState({[name]: value,
-            isValid: this.checkAllInputsNotEpmty(this.state) ? true : false,
-          });
+            this.setState({
+                [name]: value,
+                isValid: this.checkAllInputsNotEpmty(this.state) && requiredSumCorrect ? true : false,
+                NameErrorSum: !requiredSumCorrect ? "Сумма цели, меньше суммы вложенний" : ""
+            });
         } else {
           this.setState({isValid: false, nameTarget: "",});
         }
