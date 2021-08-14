@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
 import './Main.css';
-import {input} from '../action/CardAction';
+import {addPurpose} from '../action/CardAction';
 
 // Основной класс
 class Main extends Component {
@@ -34,10 +34,10 @@ class Main extends Component {
     buttonClick = (e) => {
        // e.preventDefault();
         console.log(this.state)
-        const text =  this.state
+        const dataPurpose =  this.state
         store.dispatch({
-            type: input,
-            payload:  text,//отправили в редьюсер
+            type: addPurpose,
+            payload:  dataPurpose,//отправили в редьюсер
         })
         }
     

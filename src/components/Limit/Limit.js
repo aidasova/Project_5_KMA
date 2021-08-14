@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Limit.css';
 import { Link } from 'react-router-dom';
 import store from '../../reducer/store';
-import {input} from '../action/CardAction';
+import {add} from '../action/CardAction';
 
 class Limit extends Component {
 
@@ -37,7 +37,7 @@ class Limit extends Component {
         // console.log(this.state)
         let cardPart = this.state
         store.dispatch({
-            type: input,
+            type: add,
             payload: cardPart,//отправили в редьюсер
         })
       }
