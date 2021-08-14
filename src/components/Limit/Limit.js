@@ -12,44 +12,47 @@ class Limit extends Component {
           depositInterest: "",
           taskResult: "",
           NameError: "",
+          nameTarget: "",
           isValid: false,
         };
       }
 
-      checkAllInputsNotEpmty()  {
-        if (this.state.requiredAmount === "") {
+      checkAllInputsNotEpmty(newState)  {
+        if (newState.requiredAmount === "") {
           return false;
-        } else if (this.state.targetTerm === "") {
+        } else if (newState.targetTerm === "") {
           return false;
-        } else if (this.state.startingAmount === "") {
+        } else if (newState.startingAmount === "") {
           return false;
-        } else if (this.state.depositInterest === "") {
+        } else if (newState.depositInterest === "") {
           return false;
         } else {
+          this.setState({isValid: true})
           return true
         }
       }
 
       handlerChange = (event) => {
         let name = event.target.name; //получаем название поля
+        let value = Number(event.target.value); // получаем значение поля
+        let newState = {...this.state, [name]: value};
         let initialValue = '';
 
         let inputsForSaveInitialValue = [
           'depositInterest'
         ];
 
-        if (inputsForSaveInitialValue.includes(event.target.name)) {
-          initialValue = event.target.value;
+        if (inputsForSaveInitialValue.includes(name)) {
+          initialValue = value;
         }
 
-        let value = Number(event.target.value); // получаем значение поля
         // let allInputsFilled = ;
-        this.checkAllInputsNotEpmty() 
+        let checkAllInputsNotEpmty = this.checkAllInputsNotEpmty(newState) 
 
         if (!isNaN(value)) {
           this.setState({ 
             [name]: initialValue ? initialValue : value,
-            taskResult: true ? this.resultInput(name, value) : false,
+            taskResult: checkAllInputsNotEpmty ? this.resultInput(newState) : '',
           });
         } else {
           this.setState({
@@ -68,11 +71,11 @@ class Limit extends Component {
         }
       }
       // https://law03.ru/kalkulyator/nakoplenij_deneg 
-      resultInput(name, value) {
-        let data = {...this.state, [name]: value};
-        let persent = data.depositInterest / 100; // Расчет процента
-        let resultSum1 = data.requiredAmount - data.startingAmount * (1 + persent / 12)**data.targetTerm;
-        let resultsum2 = (1 + persent / 12)**data.targetTerm - 1;
+      resultInput(newState) {
+        // let data = {...this.state, [name]: value};
+        let persent = newState.depositInterest / 100; // Расчет процента
+        let resultSum1 = newState.requiredAmount - newState.startingAmount * (1 + persent / 12)**newState.targetTerm;
+        let resultsum2 = (1 + persent / 12)**newState.targetTerm - 1;
         let resultsum3 = persent / 12 * (resultSum1 / resultsum2)
         return resultsum3.toFixed(2);
       }
@@ -129,6 +132,15 @@ class Limit extends Component {
                         type="text"
                         value={this.state.taskResult}
                         placeholder="Сумма ежемесячного платежа"
+                        />
+                    </label>
+                    <label>
+                        Имя цели
+                        <input
+                        name="nameTarget"
+                        type="text"
+                        value={this.state.nameTarget}
+                        placeholder="Название цели"
                         />
                     </label>
                 <button type="submit" className="buttonBox" disabled={!this.state.isValid}>Создать цель</button>
