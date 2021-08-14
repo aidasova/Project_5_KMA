@@ -9,7 +9,8 @@ class Main extends Component {
     constructor() {
         super();
         this.state = {
-            text: ''
+            id: '',
+            text: '',
         };
     }
    
@@ -36,7 +37,7 @@ class Main extends Component {
         const text =  this.state
         store.dispatch({
             type: input,
-            payload: text,//отправили в редьюсер
+            payload:  text,//отправили в редьюсер
         })
         }
     

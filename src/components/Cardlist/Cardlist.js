@@ -18,7 +18,7 @@ buttonClick = (e) => {
   //e.preventDefault();
    console.log(this.state)
    const text =  this.state
-  
+   
   }
     render() {  
         return (

@@ -26,10 +26,8 @@ class Limit extends Component {
       handlerChange = (event) => {
         let name = event.target.name; //получаем название поля
         let value = event.target.value; // получаем значение поля
-        let inputText = this.props.inputText
         this.setState({ 
             [name]: value,
-            id: inputText
         });
         console.log({ [name]: value });
       };
@@ -41,7 +39,6 @@ class Limit extends Component {
         store.dispatch({
             type: input,
             payload: cardPart,//отправили в редьюсер
-
         })
       }
     render() { 
