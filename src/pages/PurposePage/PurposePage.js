@@ -1,15 +1,14 @@
-const PurposePage = ({contact}) => {
-    
-	return(
-        <div>
-	        <div className="col-xs-8 col-sm-9">
-	            <span className="name">{contact.requiredAmount}</span>
-	            
-	          //a
-                
-	        </div>
-	      </div>
-        
-    )
+import React, { Component } from 'react';
+import './PurposePage.css';
+
+class PurposePage extends Component {
+    render() { 
+        return (
+            <div className="purpose-page">
+        jhgkjk
+            </div>
+        );
+    }
 }
+ 
 export default PurposePage;

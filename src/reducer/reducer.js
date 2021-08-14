@@ -5,7 +5,22 @@ import {input} from '../components/action/CardAction'
 let initialState = { 
     listItem: [],
     cardlist: [
-       { text: "цель"}
+    { 
+        id: 1,
+        text: "цель1"
+    },
+    { 
+        id: 2,
+        text: "цель2"
+    },
+    { 
+        id: 3,
+        text: "цель3"
+    },
+    { 
+        id: 4,
+        text: "цель4"
+    }
         // {
         // requiredAmount: "300000",
         // targetTerm: "6",
