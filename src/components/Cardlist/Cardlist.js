@@ -13,7 +13,7 @@ componentDidMount() {
     cardlist: globalState.cardlist
   })
 }
-
+//ghh
     render() {  
       console.log(this.props.text)
         return (
