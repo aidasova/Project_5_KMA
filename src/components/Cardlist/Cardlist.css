@@ -1,13 +1,21 @@
 .purpose {
+<<<<<<< HEAD
     position: relative;
+=======
+>>>>>>> ca41811ff3b25bbf283cdfc63851201f6230b9d8
     width: 100px;
 	height: 100px;
     margin: 10px auto;
     padding: 1em;
     border-radius: 10px;
     box-shadow:
+<<<<<<< HEAD
      0 1px 4px rgba(124, 123, 123, 0.3),
      23px 0 20px -23px rgba(62, 80, 158, 0.774),
+=======
+     0 1px 4px rgba(50,50,50,0.3),
+     23px 0 20px -23px rgba(231, 231, 231, 0.8),
+>>>>>>> ca41811ff3b25bbf283cdfc63851201f6230b9d8
      0 0 40px rgba(173, 172, 172, 0.1) inset;
 }
 .purpose_items {
@@ -18,9 +26,12 @@
 .purpose_title {
     text-align: center;
     line-height: 100px;
+<<<<<<< HEAD
 }
 .btn_purpose_item {
     position: absolute;
     top: 10px;
     right: 10px;
+=======
+>>>>>>> ca41811ff3b25bbf283cdfc63851201f6230b9d8
 }

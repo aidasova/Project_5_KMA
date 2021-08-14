@@ -55,10 +55,16 @@ class Main extends Component {
                         type="text"
                         onChange={this.changeHandler}
                         />
+<<<<<<< HEAD
                     <Link to={'/1'} onClick={()=>this.buttonClick()} className="btn_add">ADD</Link>
                 </div>
             </div>
       
+=======
+                    <Link to={'/1'}  className="btn_add">ADD</Link>
+                    {/* <button type="button" className="add" onClick={this.buttonClick} disabled={!text}>ADD</button> */}
+                </div>
+>>>>>>> ca41811ff3b25bbf283cdfc63851201f6230b9d8
             </div>
         )
            

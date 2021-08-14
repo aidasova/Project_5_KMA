@@ -40,15 +40,23 @@ class Limit extends Component {
         let cardPart = this.state
         store.dispatch({
             type: input,
+<<<<<<< HEAD
             payload: cardPart,//отправили в редьюсер
 
+=======
+            payload: cardPart//отправили в редьюсер
+>>>>>>> ca41811ff3b25bbf283cdfc63851201f6230b9d8
         })
       }
     render() { 
       const {inputText} = this.props
         return (
             <div className="purpose_made">
+<<<<<<< HEAD
                 <div>{inputText}</div>
+=======
+                <div>{text}</div>
+>>>>>>> ca41811ff3b25bbf283cdfc63851201f6230b9d8
                 <form className="form" onSubmit={this.onSubmit}>
                     <label>
                         <input

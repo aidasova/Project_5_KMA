@@ -10,6 +10,7 @@ class MainPage extends Component {
             <div className="main-page">
                 <Main />
                 <Cardlist />
+
             </div>
         );
     }
