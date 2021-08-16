@@ -42,7 +42,7 @@ class Main extends Component {
     
     render() { 
         return this.state.id
-       ? (<Redirect to={"/form/" + this.state.text}></Redirect>)
+       ? (<Redirect to={"/form/" + this.state.id}></Redirect>)
        : (
            
             <div>
