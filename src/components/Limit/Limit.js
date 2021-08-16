@@ -50,10 +50,10 @@ class Limit extends Component {
         })
       }
     render() { 
+       
         return (
             <div className="purpose_made">
-                <div>w</div>
-    
+                <div className="purpose_made_name">Параметры цели</div>
 
                 <form className="form" onSubmit={this.onSubmit}>
                     <label>

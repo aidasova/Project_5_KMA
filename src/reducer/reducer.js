@@ -1,6 +1,6 @@
 import {addPurpose, input} from '../components/action/CardAction'
 import {add} from '../components/action/CardAction'
-// import {toggle} from '../components/action/CardAction'
+import {madePurpose} from '../components/action/CardAction'
 
 let initialState = { 
     listItem: [],
@@ -54,6 +54,12 @@ function reducer(state = initialState, action) {
            ...state, cardlist: state.cardlist
         }
     }
+    // if (action.type === madePurpose) {
+
+    // }
+    //     return {
+                
+    //     }
       return state;
 }
 export default reducer;
