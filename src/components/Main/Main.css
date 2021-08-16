@@ -1,0 +1,32 @@
+.input_main {
+    width: 260px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+}
+.button_main {
+    padding: 5px;
+}
+.form_main {
+    padding: 10px;
+}
+.btn_add {
+    border: 0;
+    background: transparent;
+    outline: none;
+    padding: 10px;
+    color: black;
+    position: absolute;
+    right: 10px;
+}
+.block_input {
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+}
+.title {
+    font-weight: normal;
+    color: gray;
+}
