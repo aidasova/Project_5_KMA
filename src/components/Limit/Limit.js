@@ -51,11 +51,19 @@ class Limit extends Component {
         let requiredSumCorrect = newState.requiredAmount > newState.startingAmount;
 
         if (!isNaN(value)) {
+          let monthlyPayment = 0;
+
+          if (allInputsNotEpmty) {
+            monthlyPayment = this.resultInput(newState);
+          } 
+
+          console.log(monthlyPayment)
+
           this.setState({ 
             [name]: initialValue ? initialValue : value,
-            taskResult: allInputsNotEpmty ? this.resultInput(newState) : '',
+            taskResult: monthlyPayment > 0 ? monthlyPayment : '',
             isValid: allInputsNotEpmty && newState.nameTarget !== "" && requiredSumCorrect ? true : false,
-            NameError: "",
+            NameError: monthlyPayment > 0 ? '' : 'Невозможно просчитать сумму платежа',
             NameErrorSum: !requiredSumCorrect ? "Сумма цели, меньше суммы вложенний" : ""
           });
         } else {
@@ -97,11 +105,8 @@ class Limit extends Component {
         let resultSum1 = newState.requiredAmount - newState.startingAmount * (1 + persent / 12)**newState.targetTerm;
         let resultsum2 = (1 + persent / 12)**newState.targetTerm - 1;
         let resultsum3 = persent / 12 * (resultSum1 / resultsum2);
-        if (resultsum3 < 0) {
-          return resultsum3 = '';
-        } else {
-          return resultsum3.toFixed(2);
-        }
+
+        return resultsum3.toFixed(2);
       }
 
     render() { 
