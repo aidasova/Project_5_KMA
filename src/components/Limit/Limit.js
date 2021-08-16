@@ -3,17 +3,24 @@ import './Limit.css';
 import { Link } from 'react-router-dom';
 import store from '../../reducer/store';
 import {add} from '../action/CardAction';
+import Cardlist from '../Cardlist/Cardlist';
 
 class Limit extends Component {
 
     constructor() {
         super();
         this.state = {
+          //  cardlist: [], 
+      //     infocard: [
+              // {
           requiredAmount: "",
           targetTerm: "",
           startingAmount: "",
           depositInterest: ""
         }
+    //]
+  
+  //  }
      }
       componentDidMount() {
         store.subscribe(() => {
@@ -23,6 +30,7 @@ class Limit extends Component {
             })
         })
     }
+
       handlerChange = (event) => {
         let name = event.target.name; //получаем название поля
         let value = event.target.value; // получаем значение поля
@@ -42,10 +50,11 @@ class Limit extends Component {
         })
       }
     render() { 
-      const {inputText} = this.props
         return (
             <div className="purpose_made">
-                <div>{inputText}</div>
+                <div>w</div>
+    
+
                 <form className="form" onSubmit={this.onSubmit}>
                     <label>
                         <input

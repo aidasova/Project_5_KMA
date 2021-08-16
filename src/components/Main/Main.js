@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import store from '../../reducer/store';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './Main.css';
 import {addPurpose} from '../action/CardAction';
 
-// Основной класс
 class Main extends Component {
     constructor() {
         super();
@@ -42,8 +41,10 @@ class Main extends Component {
         }
     
     render() { 
-        const {inputText, requiredAmount, targetTerm, startingAmount, depositInterest } = this.props
-        return (
+        return this.state.id
+       ? (<Redirect to={"/form/" + this.state.text}></Redirect>)
+       : (
+           
             <div>
             <div className="form_main">
                 <h3 className="title">Мои цели</h3>
@@ -56,7 +57,7 @@ class Main extends Component {
                         type="text"
                         onChange={this.changeHandler}
                         />
-                    <Link to={'/1'} onClick={()=>this.buttonClick()} className="btn_add">ADD</Link>
+                    <button onClick={()=>this.buttonClick()} className="btn_add">ADD</button>
                 </div>
             </div>
       

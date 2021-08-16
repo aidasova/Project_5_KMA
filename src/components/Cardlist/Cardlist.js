@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Cardlist.css';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
-//import {deletePurpose} from '../action/CardAction';
 
 class Cardlist extends Component {
 state = {
@@ -16,19 +15,10 @@ componentDidMount() {
   })
 }
 buttonClick = (e) => {
-  //e.preventDefault();
    console.log(this.state)
-   const text =  this.state
-   
+ 
   }
-  // deleteClick (id)  {  
-  //   console.log(this.state)
-  //   const text =  this.state
-  //   store.dispatch({
-  //     type: deletePurpose,
-  //     payload:  item.id,//отправили в редьюсер
-  // })
-  // }
+ 
     render() {  
      
         return (
@@ -38,7 +28,7 @@ buttonClick = (e) => {
               <div className="purpose">
                   <div className="purpose_title" key={item.id}>{item.text}</div>
                   <div className="btn_purpose_item" onClick={()=>this.deleteClick(item.id)}>X</div>
-                  <Link to={'/:' + this.state.id} onClick={()=>this.buttonClick()} className="btn_add_item"></Link>
+                  <Link to={'/' + item.text} onClick={()=>this.buttonClick()} className="btn_add_item"></Link>
               </div>
               ))}
           </div>

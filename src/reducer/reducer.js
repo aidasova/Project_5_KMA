@@ -7,27 +7,11 @@ let initialState = {
     cardlist: [
                 { 
                     id: 1,
-                    // text: "цель1",
-                    // requiredAmount: "300000",
-                    // targetTerm: "6",
-                    // startingAmount: "0",
-                    // depositInterest: "5"
+                    text: "цель1",
                 },
                 { 
                     id: 2,
-                    // text: "цель2",
-                    // requiredAmount: "300000",
-                    // targetTerm: "6",
-                    // startingAmount: "0",
-                    // depositInterest: "5"
-                },
-                { 
-                    id: 3,
-                    // text: "цель3",
-                    // requiredAmount: "300000",
-                    // targetTerm: "6",
-                    // startingAmount: "0",
-                    // depositInterest: "5"
+                    text: "цель2",
                 },
             ],
     infoCard: [
@@ -55,11 +39,19 @@ function reducer(state = initialState, action) {
         }
     }   
     if(action.type === add) { 
-        state.infoCard.push(action.payload)
-        console.log(state.infoCard.push(action.payload))
-        let z = state.cardlist.push.apply(state.cardlist, state.infoCard)
+        console.log(state.cardlist)
+        const maxId = state.cardlist.reduce((max, item) => item.id > max ? item.id : max, 0);
+        console.log(maxId)
+        for(let i = 0; i < state.cardlist.length; i++) {
+            console.log(state.cardlist[i].id)
+            if (state.cardlist[i].id === maxId) {
+                Object.assign(state.cardlist[i], action.payload)
+            }
+            console.log(state.cardlist)
+        }
+
         return {
-            ...state, cardlist: z
+           ...state, cardlist: state.cardlist
         }
     }
       return state;

@@ -13,8 +13,9 @@
     padding: 10px;
 }
 .btn_add {
-    text-decoration: none;
-    line-height: 20px;
+    border: 0;
+    background: transparent;
+    outline: none;
     padding: 10px;
     color: black;
     position: absolute;
