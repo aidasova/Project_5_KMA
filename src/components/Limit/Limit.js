@@ -7,6 +7,6 @@ import Cardlist from '../Cardlist/Cardlist';
 
 class Limit extends Component {
 
-   
+}   
  
 export default Limit;
