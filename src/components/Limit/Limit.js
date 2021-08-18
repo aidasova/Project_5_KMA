@@ -25,7 +25,6 @@ class Limit extends Component {
       }
      
       componentDidMount() {
-        store.subscribe(() => {
             const globalState = store.getState(); 
             console.log(globalState)
             const maxId = globalState.cardlist.reduce((max, item) => item.id > max ? item.id : max, 0);
@@ -38,7 +37,6 @@ class Limit extends Component {
             this.setState({  
                 cardlist: globalState.cardlist
             })
-        })
     }
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
@@ -109,7 +107,7 @@ class Limit extends Component {
         } else {
           this.setState({isValid: false, nameTarget: "",});
         }
-        console.log(this.setState)
+
       }
 
       handlerSubmit = (event, submit) => {

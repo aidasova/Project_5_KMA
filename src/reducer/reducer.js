@@ -41,13 +41,16 @@ function reducer(state = initialState, action) {
     }   
     if(action.type === add) { 
         console.log(action.payload.id)
-        if(state.cardlist.find(item => item.id === action.payload.id)){
-            
-            state.cardlist.push(action.payload)
-
-        }
-         return {
-            ...state, cardlist: state.cardlist
+    //    let item = state.cardlist.find(item => item.id === action.payload.id)
+       
+          let res = state.cardlist.map((item) => {
+            if(item.id === action.payload.id) {
+               return item = {...item, ...action.payload}
+            }
+            return item; 
+           })
+           return {
+            ...state, cardlist: res
         }
         
     }
