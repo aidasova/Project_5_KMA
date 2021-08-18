@@ -11,8 +11,8 @@ class App extends React.Component {
     return (
       <div className="app">
          <Route path="/" exact component={MainPage} />
-         <Route path="/form" component={ButtonPage} />
-         <Route path="/:id" exact component={PurposePage} />
+         <Route path="/form/:id" component={ButtonPage} />
+         <Route path="/purpose/:id" exact component={PurposePage} />
       </div>
     );
   }

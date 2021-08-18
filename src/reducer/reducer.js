@@ -1,27 +1,28 @@
-import {addPurpose, input} from '../components/action/CardAction'
-import {add} from '../components/action/CardAction'
-import {madePurpose} from '../components/action/CardAction'
+import {addPurpose} from '../components/action/CardAction';
+import {add} from '../components/action/CardAction';
+import {deleted} from '../components/action/CardAction';
 
 let initialState = { 
-    listItem: [],
     cardlist: [
                 { 
                     id: 1,
                     text: "цель1",
+                    requiredAmount: "300000",
+                    targetTerm: "6",
+                    startingAmount: "0",
+                    depositInterest: "5",
+                    taskResult: "",
                 },
                 { 
                     id: 2,
                     text: "цель2",
-                },
-            ],
-    infoCard: [
-                {
                     requiredAmount: "300000",
                     targetTerm: "6",
                     startingAmount: "0",
-                    depositInterest: "5"
-                }
-            ]     
+                    depositInterest: "5",
+                    taskResult: "",
+                },
+            ],   
         }
 
 function reducer(state = initialState, action) {
@@ -39,27 +40,27 @@ function reducer(state = initialState, action) {
         }
     }   
     if(action.type === add) { 
-        console.log(state.cardlist)
-        const maxId = state.cardlist.reduce((max, item) => item.id > max ? item.id : max, 0);
-        console.log(maxId)
-        for(let i = 0; i < state.cardlist.length; i++) {
-            console.log(state.cardlist[i].id)
-            if (state.cardlist[i].id === maxId) {
-                Object.assign(state.cardlist[i], action.payload)
-            }
-            console.log(state.cardlist)
-        }
+        console.log(action.payload.id)
+        if(state.cardlist.find(item => item.id === action.payload.id)){
+            
+            state.cardlist.push(action.payload)
 
-        return {
-           ...state, cardlist: state.cardlist
         }
+         return {
+            ...state, cardlist: state.cardlist
+        }
+        
     }
-    // if (action.type === madePurpose) {
-
-    // }
-    //     return {
-                
-    //     }
+    if(action.type === deleted) {
+        console.log(action.payload)
+        state.cardlist.filter((item) => { 
+        return item.id !== action.payload
+    });   
+    
+        return ({ ...state, cardlist: state.cardlist});
+    }
+   
       return state;
 }
+
 export default reducer;

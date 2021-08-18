@@ -3,7 +3,6 @@ import './Limit.css';
 import { Link } from 'react-router-dom';
 import store from '../../reducer/store';
 import {add} from '../action/CardAction';
-import Cardlist from '../Cardlist/Cardlist';
 
 // Форма создания Цели *
 class Limit extends Component {
@@ -11,6 +10,8 @@ class Limit extends Component {
     constructor() {
         super();
         this.state = {
+          id: "",
+          text: "",
           requiredAmount: "",
           targetTerm: "",
           startingAmount: "",
@@ -22,7 +23,23 @@ class Limit extends Component {
           isValid: false,
         };
       }
-
+     
+      componentDidMount() {
+        store.subscribe(() => {
+            const globalState = store.getState(); 
+            console.log(globalState)
+            const maxId = globalState.cardlist.reduce((max, item) => item.id > max ? item.id : max, 0);
+            console.log(maxId)
+            this.setState({
+              id: maxId
+            })
+            console.log(this.state)
+          
+            this.setState({  
+                cardlist: globalState.cardlist
+            })
+        })
+    }
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
           return false
@@ -92,18 +109,27 @@ class Limit extends Component {
         } else {
           this.setState({isValid: false, nameTarget: "",});
         }
+        console.log(this.setState)
       }
 
-      handlerSubmit(event) {
+      handlerSubmit = (event, submit) => {
         event.preventDefault();
-        if (event.target.value === "") {
-          console.log("Карточка зарегистрирована");
-        } else {
-          console.log("Вы не заполнили поля");
-        }
+        console.log(this.state.id)
+        console.log(this.state)
+        // if (event.target.value === "") {
+        //   console.log("Карточка зарегистрирована");
+          let cardPart = this.state
+        store.dispatch({
+            type: add,
+            payload: cardPart,//отправили в редьюсер
+        })
+
+        // } else {
+        //   console.log("Вы не заполнили поля");
+        // }
       }
       // https://law03.ru/kalkulyator/nakoplenij_deneg 
-
+    
       resultInput(newState) {
         let persent = newState.depositInterest / 100; // Расчет процента
         let resultSum1 = newState.requiredAmount - newState.startingAmount * (1 + persent / 12)**newState.targetTerm;
@@ -114,14 +140,15 @@ class Limit extends Component {
       }
 
     render() { 
-        return (
+      return  (
             <div className="purpose_made">
+              <div className="purpose_made_name">Параметры цели</div>
               <div className="error">{this.state.NameError}</div>
               <div className="error">{this.state.NameErrorSum}</div>
-                <form onSubmit={this.handlerSubmit}>
+                <form className="form" onSubmit={this.handlerSubmit}>
                     <label>
-                        Сумма для достижения цели 
                         <input
+                        className="form_input"
                         name="requiredAmount"
                         type="text"
                         value={this.state.requiredAmount}
@@ -130,18 +157,18 @@ class Limit extends Component {
                         />
                     </label>
                     <label>
-                        Количество месяцев
                         <input
+                        className="form_input"
                         name="targetTerm"
                         type="text"
                         value={this.state.targetTerm}
                         onChange={this.handlerChange}
-                        placeholder="Срок достижения"
+                        placeholder="Срок достижения(мес)"
                         />
                     </label>
                     <label>
-                        Начальная сумма вложений
                         <input
+                        className="form_input"
                         name="startingAmount"
                         type="text"
                         value={this.state.startingAmount}
@@ -150,8 +177,8 @@ class Limit extends Component {
                         />
                     </label>
                     <label>
-                        Ежемесячное начисление процентов
                         <input
+                        className="form_input"
                         name="depositInterest"
                         type="text"
                         value={this.state.depositInterest}
@@ -160,17 +187,17 @@ class Limit extends Component {
                         />
                     </label>
                     <label>
-                        Сумма ежемесячного пополнения
                         <input
+                        className="form_input"
                         name="taskResult"
                         type="text"
                         value={this.state.taskResult}
-                        placeholder="Сумма ежемесячного платежа"
+                        placeholder="Сумма ежемесячного пополнения"
                         />
                     </label>
                     <label>
-                        Имя цели
                         <input
+                        className="form_input"
                         name="nameTarget"
                         type="text"
                         value={this.state.nameTarget}
@@ -178,9 +205,9 @@ class Limit extends Component {
                         placeholder="Название цели"
                         />
                     </label>
-                <button type="submit" className="buttonBox" disabled={!this.state.isValid}>Создать цель</button>
-                <button className="buttonBox">Вернуться назад</button>
+                <button type="submit" className="form_submit">Создать цель</button>
                 </form>
+                <Link to={'/'} className="form_btn_new">Создать новую цель</Link>
             </div>
         );
     }

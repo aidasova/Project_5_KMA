@@ -1,44 +1,32 @@
-.purpose_made {
-    width: 320px;
-    height: 430px;
-    border-radius: 10px;
-    border: 1px solid rgb(15, 15, 15);
-    background-color: rgb(25, 203, 235);
-    padding: 10px;
-    margin: 0 auto;
-}
-
-label {
-    display: flex;
-    padding: 5px;
-    display: block;
-    margin: 0px;
-}
-
-.error {
-    color: red;
-}
-
-input {
-    background-color: white;
-    padding: 5px;
-    box-sizing: border-box;
-    border-radius: 5px;
+.form_input {
+    margin: 20px;
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    width: 260px;
     border: none;
-    width: 300px;
     outline: none;
-}
-
-.buttonBox {
-    background-color: rgb(219, 217, 217);
-    width: 302px;
-    border-radius: 5px;
+  }
+  .form_submit {
+    text-align: center;
+    width: 280px;
+    margin: 10px auto;
+    padding: 1em;
     border: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin: 5px;
-}
-
-.buttonBox:disabled {
-    background-color: rgb(101, 117, 167);
-}
+    box-shadow:
+     0 1px 4px rgba(50,50,50,0.3),
+     23px 0 20px -23px rgba(231, 231, 231, 0.8),
+     0 0 40px rgba(173, 172, 172, 0.1) inset;
+  }
+  .purpose_made_name {
+    margin-left: 20px;
+    font-size: 14px;
+  }
+  .form_btn_new {
+   text-decoration: none;
+   color: black;
+   font-size: 14px;
+   padding: 20px;
+   width: 250px;
+  }
+  

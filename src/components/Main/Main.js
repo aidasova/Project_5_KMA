@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import store from '../../reducer/store';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './Main.css';
 import {addPurpose} from '../action/CardAction';
 
