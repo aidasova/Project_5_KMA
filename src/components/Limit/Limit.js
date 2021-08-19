@@ -28,12 +28,14 @@ class Limit extends Component {
             const globalState = store.getState(); 
             console.log(globalState)
             const maxId = globalState.cardlist.reduce((max, item) => item.id > max ? item.id : max, 0);
+            const maxText =globalState.cardlist.reduce((max, item) => item.text > max ? item.text : max, 0);
             console.log(maxId)
             this.setState({
-              id: maxId
+              id: maxId,
+              text: maxText
             })
             console.log(this.state)
-          
+        
             this.setState({  
                 cardlist: globalState.cardlist
             })
@@ -83,8 +85,9 @@ class Limit extends Component {
             taskResult: monthlyPayment > 0 ? monthlyPayment : '',
             isValid: allInputsNotEpmty && newState.nameTarget !== "" && requiredSumCorrect ? true : false,
             NameError: monthlyPayment > 0 ? '' : 'Невозможно просчитать сумму платежа',
-            NameErrorSum: !requiredSumCorrect ? "Сумма цели, меньше суммы вложенний" : ""
-          });
+            NameErrorSum: !requiredSumCorrect ? "Сумма цели, меньше суммы вложенний" : "",
+         
+          }); 
         } else {
           this.setState({
             NameError: "Необходимо указывать числовые данные",
@@ -94,6 +97,7 @@ class Limit extends Component {
       };
       
       nameNewTarget = (event) => {
+
         let name = event.target.name;
         let value = event.target.value;
         let requiredSumCorrect = this.state.requiredAmount > this.state.startingAmount;
@@ -110,7 +114,7 @@ class Limit extends Component {
 
       }
 
-      handlerSubmit = (event, submit) => {
+      handlerSubmit = (event) => {
         event.preventDefault();
         console.log(this.state.id)
         console.log(this.state)
@@ -203,9 +207,9 @@ class Limit extends Component {
                         placeholder="Название цели"
                         />
                     </label>
-                <button type="submit" className="form_submit">Создать цель</button>
+                <button type="submit" className="form_submit">Создать цель с введенными параметрами</button>
                 </form>
-                <Link to={'/'} className="form_btn_new">Создать новую цель</Link>
+                <Link to={'/'} className="form_btn_new">Создать новую цель / перейти на главную</Link>
             </div>
         );
     }

@@ -41,8 +41,6 @@ function reducer(state = initialState, action) {
     }   
     if(action.type === add) { 
         console.log(action.payload.id)
-    //    let item = state.cardlist.find(item => item.id === action.payload.id)
-       
           let res = state.cardlist.map((item) => {
             if(item.id === action.payload.id) {
                return item = {...item, ...action.payload}
@@ -56,11 +54,14 @@ function reducer(state = initialState, action) {
     }
     if(action.type === deleted) {
         console.log(action.payload)
-        state.cardlist.filter((item) => { 
-        return item.id !== action.payload
-    });   
-    
-        return ({ ...state, cardlist: state.cardlist});
+        let idToRemove = state.cardlist.filter((item) => {
+            return item.id !== action.payload
+        });
+        console.log(idToRemove)
+
+        return ({ 
+            cardlist: idToRemove
+        });
     }
    
       return state;

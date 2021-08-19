@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     font-size: 14px;
+    width: 320px;
 }
 .purpose_item {
     box-shadow:
@@ -11,15 +12,30 @@
      0 0 40px rgba(153, 153, 187, 0.151) inset;
     margin-top: 20px;
     padding: 10px;
-    width: 250px;
     height: 20px;
 }
 .purpose_item_text {
     font-weight: 700;
 }
-.purpose_item-link {
+.purpose_item_link {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-top: 20px;
+    padding: 1em;
+    border: none;
+    box-shadow:
+    0 1px 4px rgba(105, 139, 233, 0.3),
+    23px 0 20px -23px rgba(62, 80, 158, 0.774),
+    0 0 40px rgba(153, 153, 187, 0.151) inset;
+}
+.purpose_item-link_two{
     text-decoration: none;
     color: black;
     font-size: 14px;
-    margin-top: 20px;
+    padding: 1em;
+    width: 250px;
+    font-weight: 500;
 }

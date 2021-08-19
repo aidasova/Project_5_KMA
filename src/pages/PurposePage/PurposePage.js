@@ -38,7 +38,8 @@ class PurposePage extends Component {
                 <div className="purpose_item">Процент по вкладу: {this.state.card.depositInterest}</div>
                 <div className="purpose_item">Сумма ежемесячного пополнения: {this.state.card.taskResult}</div>
               </div>
-          <Link to={'/'} onClick={()=>this.purposeClick()} className="purpose_item-link">На главную</Link>
+          <Link to={'/purpose/edit/' + this.state.card.id} className="purpose_item_link">Редактирование цели</Link>
+          <Link to={'/'} onClick={()=>this.purposeClick()} className="purpose_item-link_two">На главную</Link>
             </div>
         );
     }

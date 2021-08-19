@@ -15,6 +15,12 @@ componentDidMount() {
     this.setState ({
     cardlist: globalState.cardlist
   })
+  store.subscribe(() => {
+    let globalState = store.getState();
+    this.setState ({
+      cardlist: globalState.cardlist
+    })
+  })
 }
 buttonClick = (e) => {
    console.log(this.state)
