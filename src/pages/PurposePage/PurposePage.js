@@ -21,6 +21,7 @@ class PurposePage extends Component {
         cardlist: globalState.cardlist
       })
     }
+    
     purposeClick() {
         console.log(this.state)
     }
@@ -37,6 +38,7 @@ class PurposePage extends Component {
                 <div className="purpose_item">Стартовая сумма:{this.state.card.startingAmount}</div>
                 <div className="purpose_item">Процент по вкладу: {this.state.card.depositInterest}</div>
                 <div className="purpose_item">Сумма ежемесячного пополнения: {this.state.card.taskResult}</div>
+                <div className="purpose_item">Название цели: {this.state.card.nameTarget}</div>
               </div>
           <Link to={'/purpose/edit/' + this.state.card.id} className="purpose_item_link">Редактирование цели</Link>
           <Link to={'/'} onClick={()=>this.purposeClick()} className="purpose_item-link_two">На главную</Link>
