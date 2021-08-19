@@ -6,12 +6,12 @@ let initialState = {
     cardlist: [
                 { 
                     id: 1,
-                    text: "цель1",
                     requiredAmount: "300000",
                     targetTerm: "6",
                     startingAmount: "0",
                     depositInterest: "5",
                     taskResult: "",
+                    nameTarget: "цель1"
                 },
                 { 
                     id: 2,
@@ -21,6 +21,7 @@ let initialState = {
                     startingAmount: "0",
                     depositInterest: "5",
                     taskResult: "",
+                    nameTarget: "цель2"
                 },
             ],   
         }

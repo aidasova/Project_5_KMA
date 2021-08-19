@@ -28,17 +28,18 @@ class Limit extends Component {
             const globalState = store.getState(); 
             console.log(globalState)
             const maxId = globalState.cardlist.reduce((max, item) => item.id > max ? item.id : max, 0);
-            const maxText =globalState.cardlist.reduce((max, item) => item.text > max ? item.text : max, 0);
+            const currentPurpose =globalState.cardlist.find((item) => {
+              if (item.id === maxId) {
+                return item;
+              }
+            });
+
             console.log(maxId)
             this.setState({
-              id: maxId,
-              text: maxText
+              id: currentPurpose.id,
+              nameTarget: currentPurpose.text
             })
             console.log(this.state)
-        
-            this.setState({  
-                cardlist: globalState.cardlist
-            })
     }
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {

@@ -50,7 +50,7 @@ class Main extends Component {
                 <h3 className="title">Мои цели</h3>
                 <div className="block_input">
                     <input 
-                        value={this.state.text}
+                        value={this.state.nameTarget}
                         name='input'
                         className="input_main" 
                         placeholder="добавить цель"
