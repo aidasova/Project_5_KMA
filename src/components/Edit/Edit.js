@@ -4,40 +4,31 @@ import { Link } from 'react-router-dom';
 import store from '../../reducer/store';
 import {add} from '../action/CardAction';
 
-// Форма создания Цели *
 class Edit extends Component {
 
     constructor() {
         super();
         this.state = {
-          id: "",
-          text: "",
-          requiredAmount: "",
-          targetTerm: "",
-          startingAmount: "",
-          depositInterest: "",
-          taskResult: "",
-          NameError: "",
-          NameErrorSum: "",
-          nameTarget: "",
-          isValid: false,
+          card: '',
         };
       }
+
+  // componentDidMount() {
+  //     let globalState = store.getState();
+  //     console.log(globalState)
+  //     let card = globalState.cardlist.filter(card => {
+  //       return card.id == this.props.match.params.id
+  //     })[0]
+  //     console.log(card)
+  //     this.setState({
+  //       card : card
+  //     })
+  //     this.setState ({
+  //     cardlist: globalState.cardlist
+  //   })
+  // }
      
-      componentDidMount() {
-            const globalState = store.getState(); 
-            console.log(globalState)
-            const maxId = globalState.cardlist.reduce((max, item) => item.id > max ? item.id : max, 0);
-            console.log(maxId)
-            this.setState({
-              id: maxId
-            })
-            console.log(this.state)
-          
-            this.setState({  
-                cardlist: globalState.cardlist
-            })
-    }
+
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
           return false
@@ -121,12 +112,7 @@ class Edit extends Component {
             type: add,
             payload: cardPart,//отправили в редьюсер
         })
-
-        // } else {
-        //   console.log("Вы не заполнили поля");
-        // }
       }
-      // https://law03.ru/kalkulyator/nakoplenij_deneg 
     
       resultInput(newState) {
         let persent = newState.depositInterest / 100; // Расчет процента
@@ -140,16 +126,16 @@ class Edit extends Component {
     render() { 
       return  (
             <div className="purpose_made">
-              <div className="purpose_made_name">Параметры цели</div>
-              <div className="error">{this.state.NameError}</div>
-              <div className="error">{this.state.NameErrorSum}</div>
+              <div className="purpose_made_name">Параметры изминения цели</div>
+              <div className="error">{this.state.card.NameError}</div>
+              <div className="error">{this.state.card.NameErrorSum}</div>
                 <form className="form" onSubmit={this.handlerSubmit}>
                     <label>
                         <input
                         className="form_input"
                         name="requiredAmount"
                         type="text"
-                        value={this.state.requiredAmount}
+                        value={this.state.card.requiredAmount}
                         onChange={this.handlerChange}
                         placeholder="Необходимая сумма"
                         />
@@ -159,7 +145,7 @@ class Edit extends Component {
                         className="form_input"
                         name="targetTerm"
                         type="text"
-                        value={this.state.targetTerm}
+                        value={this.state.card.targetTerm}
                         onChange={this.handlerChange}
                         placeholder="Срок достижения(мес)"
                         />
@@ -169,7 +155,7 @@ class Edit extends Component {
                         className="form_input"
                         name="startingAmount"
                         type="text"
-                        value={this.state.startingAmount}
+                        value={this.state.card.startingAmount}
                         onChange={this.handlerChange}
                         placeholder="Стартовая сумма"
                         />
@@ -179,7 +165,7 @@ class Edit extends Component {
                         className="form_input"
                         name="depositInterest"
                         type="text"
-                        value={this.state.depositInterest}
+                        value={this.state.card.depositInterest}
                         onChange={this.handlerChange}
                         placeholder="Процент по вкладу"
                         />
@@ -189,7 +175,7 @@ class Edit extends Component {
                         className="form_input"
                         name="taskResult"
                         type="text"
-                        value={this.state.taskResult}
+                        value={this.state.card.taskResult}
                         placeholder="Сумма ежемесячного пополнения"
                         />
                     </label>
@@ -198,14 +184,13 @@ class Edit extends Component {
                         className="form_input"
                         name="nameTarget"
                         type="text"
-                        value={this.state.nameTarget}
+                        value={this.state.card.nameTarget}
                         onChange={this.nameNewTarget}
                         placeholder="Название цели"
                         />
                     </label>
-                <button type="submit" className="form_submit">Создать цель</button>
+                    <Link to={'/'}  type="submit" className="form_submit">Сохранить изминения</Link>
                 </form>
-                <Link to={'/'} className="form_btn_new">Создать новую цель</Link>
             </div>
         );
     }

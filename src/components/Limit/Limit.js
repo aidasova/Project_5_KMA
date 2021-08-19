@@ -75,9 +75,7 @@ class Limit extends Component {
           if (allInputsNotEpmty) {
             monthlyPayment = this.resultInput(newState);
           } 
-
-          console.log(monthlyPayment)
-
+          
           this.setState({ 
             [name]: initialValue ? initialValue : value,
             taskResult: monthlyPayment > 0 ? monthlyPayment : '',
@@ -121,10 +119,6 @@ class Limit extends Component {
             type: add,
             payload: cardPart,//отправили в редьюсер
         })
-
-        // } else {
-        //   console.log("Вы не заполнили поля");
-        // }
       }
       // https://law03.ru/kalkulyator/nakoplenij_deneg 
     
