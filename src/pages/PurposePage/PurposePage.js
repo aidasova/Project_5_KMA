@@ -17,26 +17,44 @@ class PurposePage extends Component {
         this.setState({
           card : card
         })
-        this.setState ({
-        cardlist: globalState.cardlist
-      })
     }
     purposeClick() {
         console.log(this.state)
     }
     render() { 
-    //console.log(this.props.match)
+    console.log(this.props.match)
     //console.log(this.state)
 
         return (
             <div className="purpose_items_id">
               <div className="purpose_part">
-                <div className="purpose_item_text">{this.state.card.text}</div>
-                <div className="purpose_item">Необходимая сумма: {this.state.card.requiredAmount}</div>
-                <div className="purpose_item">Срок достижения: {this.state.card.targetTerm}</div>
-                <div className="purpose_item">Стартовая сумма:{this.state.card.startingAmount}</div>
-                <div className="purpose_item">Процент по вкладу: {this.state.card.depositInterest}</div>
-                <div className="purpose_item">Сумма ежемесячного пополнения: {this.state.card.taskResult}</div>
+                <div className="purpose_item_text">{this.state.card.nameTarget}</div>
+
+                <div className="purpose_item_part">
+                  <div className="purpose_item">Необходимая сумма: </div>
+                  <div className="purpose_item_number">{this.state.card.requiredAmount}</div>
+                </div>
+
+                <div className="purpose_item_part"> 
+                  <div className="purpose_item">Срок достижения:</div>
+                  <div className="purpose_item_number">{this.state.card.targetTerm}</div>
+                </div>
+
+                <div className="purpose_item_part">
+                  <div className="purpose_item">Стартовая сумма: </div>
+                  <div className="purpose_item_number">{this.state.card.startingAmount}</div>
+                </div>
+
+                <div className="purpose_item_part">
+                  <div className="purpose_item">Процент по вкладу:</div>
+                  <div className="purpose_item_number">{this.state.card.depositInterest}</div>
+                  </div>
+
+                <div className="purpose_item_part">
+                  <div className="purpose_item">Сумма пополнения:</div>
+                  <div className="purpose_item_number">{this.state.card.taskResult}</div>
+                </div>
+
               </div>
           <Link to={'/purpose/edit/' + this.state.card.id} className="purpose_item_link">Редактирование цели</Link>
           <Link to={'/'} onClick={()=>this.purposeClick()} className="purpose_item-link_two">На главную</Link>

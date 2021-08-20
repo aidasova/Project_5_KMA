@@ -9,7 +9,7 @@ class Main extends Component {
         super();
         this.state = {
             id: '',
-            text: '',
+            nameTarget: '',
         };
     }
    
@@ -25,7 +25,7 @@ class Main extends Component {
         console.log(e.target.value)
         let inputText = e.target.value
         this.setState({
-            text: inputText,
+            nameTarget: inputText,
         });
         console.log(e.target.value)
     }

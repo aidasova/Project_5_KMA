@@ -13,16 +13,30 @@
     margin-top: 20px;
     padding: 10px;
     height: 20px;
+    width: 220px;
+}
+.purpose_item_number {
+    box-shadow:
+     0 1px 4px rgba(105, 139, 233, 0.3),
+     23px 0 20px -23px rgba(62, 80, 158, 0.774),
+     0 0 40px rgba(153, 153, 187, 0.151) inset;
+    margin-top: 20px;
+    padding: 10px;
+    height: 20px;
+    width: 70px;
 }
 .purpose_item_text {
     font-weight: 700;
+    font-size: 14px;
+    padding: 1em;
+    width: 295px;
+    background-color: rgb(150, 160, 221);
 }
 .purpose_item_link {
     text-decoration: none;
     color: black;
-    font-weight: 500;
+    background-color: rgb(150, 160, 221);
     font-size: 14px;
-    margin-top: 20px;
     margin-top: 20px;
     padding: 1em;
     border: none;
@@ -33,9 +47,13 @@
 }
 .purpose_item-link_two{
     text-decoration: none;
-    color: black;
+    color: rgb(83, 103, 214);
     font-size: 14px;
     padding: 1em;
     width: 250px;
     font-weight: 500;
+}
+.purpose_item_part {
+    display: flex;
+    flex-wrap: nowrap;
 }

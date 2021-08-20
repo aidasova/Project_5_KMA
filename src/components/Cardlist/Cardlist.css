@@ -10,6 +10,9 @@
      23px 0 20px -23px rgba(62, 80, 158, 0.774),
      0 0 40px rgba(173, 172, 172, 0.1) inset;
 }
+.purpose:hover {
+    background-color: rgb(150, 160, 221);
+}
 .purpose_items {
     display: flex;
     flex-wrap: wrap;

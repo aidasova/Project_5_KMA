@@ -11,7 +11,6 @@ class Limit extends Component {
         super();
         this.state = {
           id: "",
-          text: "",
           requiredAmount: "",
           targetTerm: "",
           startingAmount: "",
@@ -21,6 +20,7 @@ class Limit extends Component {
           NameErrorSum: "",
           nameTarget: "",
           isValid: false,
+          savePurpose: false,
         };
       }
      
@@ -37,7 +37,7 @@ class Limit extends Component {
             console.log(maxId)
             this.setState({
               id: currentPurpose.id,
-              nameTarget: currentPurpose.text
+              nameTarget: currentPurpose.nameTarget
             })
             console.log(this.state)
     }
@@ -87,7 +87,6 @@ class Limit extends Component {
             isValid: allInputsNotEpmty && newState.nameTarget !== "" && requiredSumCorrect ? true : false,
             NameError: monthlyPayment > 0 ? '' : 'Невозможно просчитать сумму платежа',
             NameErrorSum: !requiredSumCorrect ? "Сумма цели, меньше суммы вложенний" : "",
-         
           }); 
         } else {
           this.setState({
@@ -107,7 +106,7 @@ class Limit extends Component {
             this.setState({
                 [name]: value,
                 isValid: this.checkAllInputsNotEpmty(this.state) && requiredSumCorrect ? true : false,
-                NameErrorSum: !requiredSumCorrect ? "Сумма цели, меньше суммы вложенний" : ""
+                NameErrorSum: !requiredSumCorrect ? "Сумма цели, меньше суммы вложенний" : "",
             });
         } else {
           this.setState({isValid: false, nameTarget: "",});
@@ -119,20 +118,16 @@ class Limit extends Component {
         event.preventDefault();
         console.log(this.state.id)
         console.log(this.state)
-        // if (event.target.value === "") {
-        //   console.log("Карточка зарегистрирована");
+          this.setState({
+            savePurpose: true
+          })
           let cardPart = this.state
         store.dispatch({
             type: add,
-            payload: cardPart,//отправили в редьюсер
+            payload: cardPart,
         })
-
-        // } else {
-        //   console.log("Вы не заполнили поля");
-        // }
       }
-      // https://law03.ru/kalkulyator/nakoplenij_deneg 
-    
+
       resultInput(newState) {
         let persent = newState.depositInterest / 100; // Расчет процента
         let resultSum1 = newState.requiredAmount - newState.startingAmount * (1 + persent / 12)**newState.targetTerm;
@@ -208,7 +203,10 @@ class Limit extends Component {
                         placeholder="Название цели"
                         />
                     </label>
-                <button type="submit" className="form_submit">Создать цель с введенными параметрами</button>
+                    {this.state.savePurpose
+                    ?  <button type="submit" className="form_submit_save">Цель сохранена</button>
+                    :
+                     <button type="submit" className="form_submit">Создать цель с введенными параметрами</button>}
                 </form>
                 <Link to={'/'} className="form_btn_new">Создать новую цель / перейти на главную</Link>
             </div>

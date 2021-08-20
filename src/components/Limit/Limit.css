@@ -24,9 +24,20 @@
   }
   .form_btn_new {
    text-decoration: none;
-   color: black;
+   color: rgb(83, 103, 214);
    font-size: 14px;
    padding: 20px;
    width: 250px;
   }
-  
+  .form_submit_save {
+    text-align: center;
+    background-color: rgb(150, 160, 221);
+    width: 280px;
+    margin: 10px auto;
+    padding: 1em;
+    border: none;
+    box-shadow:
+     0 1px 4px rgba(50,50,50,0.3),
+     23px 0 20px -23px rgba(231, 231, 231, 0.8),
+     0 0 40px rgba(173, 172, 172, 0.1) inset;
+  }

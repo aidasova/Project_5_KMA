@@ -5,10 +5,13 @@ import { Link } from 'react-router-dom';
 import { deleted } from '../action/CardAction';
 
 class Cardlist extends Component {
-state = {
-  cardlist: [],
-  id: ''
-}
+  constructor() {
+    super()
+      this.state = {
+        cardlist: [],
+        id: ''
+    }
+  }
 componentDidMount() {
     let globalState = store.getState();
     console.log(globalState)
@@ -24,7 +27,6 @@ componentDidMount() {
 }
 buttonClick = (e) => {
    console.log(this.state)
- 
   }
 deleteClick = (id) => {
     console.log(id)    
@@ -33,22 +35,19 @@ deleteClick = (id) => {
          payload: id
      })
 }
-    render() {  
-     
+    render() {    
         return (
-          <div>
             <div className="purpose_items">
                 {this.state.cardlist.map(item => (
-              <div className="purpose">
-                  <div className="purpose_title" key={item.id}>{item.nameTarget}</div>
-                  <div className="btn_purpose_item" onClick={()=>this.deleteClick(item.id)}>X</div>
-                  <Link to={'/purpose/' + item.id} onClick={()=>this.buttonClick()} className="btn_add_item"></Link>
-              </div>
-              ))}
-          </div>
-          </div>
+                  <div className="purpose">
+                    <div className="purpose_title" key={item.id}>{item.nameTarget}</div>
+                    <div className="btn_purpose_item" onClick={()=>this.deleteClick(item.id)}>X</div>
+                    <Link to={'/purpose/' + item.id} onClick={()=>this.buttonClick()} className="btn_add_item"></Link>
+                  </div>
+                ))}
+            </div>
         );
     } 
+  }
 
-}
 export default Cardlist;

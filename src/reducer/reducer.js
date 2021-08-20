@@ -1,27 +1,27 @@
 import {addPurpose} from '../components/action/CardAction';
 import {add} from '../components/action/CardAction';
 import {deleted} from '../components/action/CardAction';
+import { edit } from '../components/action/CardAction';
 
 let initialState = { 
     cardlist: [
                 { 
                     id: 1,
+                    nameTarget: "цель1",
                     requiredAmount: "300000",
                     targetTerm: "6",
                     startingAmount: "0",
                     depositInterest: "5",
-                    taskResult: "",
-                    nameTarget: "цель1"
+                    taskResult: "12",
                 },
                 { 
                     id: 2,
-                    text: "цель2",
+                    nameTarget: "цель2",
                     requiredAmount: "300000",
                     targetTerm: "6",
                     startingAmount: "0",
                     depositInterest: "5",
-                    taskResult: "",
-                    nameTarget: "цель2"
+                    taskResult: "12",
                 },
             ],   
         }
@@ -54,7 +54,6 @@ function reducer(state = initialState, action) {
         
     }
     if(action.type === deleted) {
-        console.log(action.payload)
         let idToRemove = state.cardlist.filter((item) => {
             return item.id !== action.payload
         });
@@ -62,6 +61,16 @@ function reducer(state = initialState, action) {
 
         return ({ 
             cardlist: idToRemove
+        });
+    }
+    if(action.type === edit) {
+        let editNo = state.cardlist.filter((item) => {
+             return item.id !== action.payload.id
+         })
+         console.log(editNo)
+         let edit = editNo.push(action.payload)
+        return ({ 
+            ...state, cardlist: edit
         });
     }
    
