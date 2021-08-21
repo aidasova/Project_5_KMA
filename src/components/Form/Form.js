@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './Limit.css';
+import './Form.css';
 import { Link } from 'react-router-dom';
 import store from '../../reducer/store';
 import {add} from '../action/CardAction';
 
 // Форма создания Цели *
-class Limit extends Component {
+class Form extends Component {
 
     constructor() {
         super();
@@ -214,4 +214,4 @@ class Limit extends Component {
     }
 }
  
-export default Limit;
+export default Form;

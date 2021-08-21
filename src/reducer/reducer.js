@@ -64,13 +64,14 @@ function reducer(state = initialState, action) {
         });
     }
     if(action.type === edit) {
-        let editNo = state.cardlist.filter((item) => {
+        let editWithOutClick = state.cardlist.filter((item) => {
              return item.id !== action.payload.id
          })
-         console.log(editNo)
-         let edit = editNo.push(action.payload)
+         console.log(editWithOutClick)
+         editWithOutClick.push(action.payload)
+
         return ({ 
-            ...state, cardlist: edit
+            ...state, cardlist: editWithOutClick
         });
     }
    

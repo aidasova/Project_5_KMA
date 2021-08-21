@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import MainPage from './pages/MainPage/MainPage';
-import ButtonPage from './pages/ButtonPage/ButtonPage';
+import FormPage from './pages/FormPage/FormPage';
 import PurposePage from './pages/PurposePage/PurposePage';
 import EditPage from './pages/EditPage/EditPage';
 
@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <div className="app">
          <Route path="/" exact component={MainPage} />
-         <Route path="/form/:id" exact component={ButtonPage} />
+         <Route path="/form/:id" exact component={FormPage} />
          <Route path="/purpose/:id" exact component={PurposePage} />
          <Route path="/purpose/edit/:id" exact component={EditPage} />
       </div>
