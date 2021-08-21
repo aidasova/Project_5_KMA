@@ -17,16 +17,16 @@ class Edit extends Component {
       let globalState = store.getState();
       console.log(globalState)
       console.log(this.props)
-    //   let card = globalState.cardlist.filter(card => {
-    //     return card.id == this.props.match.params.id
-    //   })[0]
-    //   console.log(card)
-    //   this.setState({
-    //     card : card
-    //   })
-    //   this.setState ({
-    //   cardlist: globalState.cardlist
-    // })
+      let card = globalState.cardlist.filter(card => {
+        return card.id == this.props.id
+      })[0]
+      console.log(card)
+      this.setState({
+        card : card
+      })
+      this.setState ({
+      cardlist: globalState.cardlist
+    })
   }
      
       checkAllInputsNotEpmty(newState)  {
