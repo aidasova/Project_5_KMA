@@ -13,22 +13,22 @@ class Edit extends Component {
         };
       }
 
-  // componentDidMount() {
-  //     let globalState = store.getState();
-  //     console.log(globalState)
-  //     let card = globalState.cardlist.filter(card => {
-  //       return card.id == this.props.match.params.id
-  //     })[0]
-  //     console.log(card)
-  //     this.setState({
-  //       card : card
-  //     })
-  //     this.setState ({
-  //     cardlist: globalState.cardlist
-  //   })
-  // }
+  componentDidMount() {
+      let globalState = store.getState();
+      console.log(globalState)
+      console.log(this.props)
+    //   let card = globalState.cardlist.filter(card => {
+    //     return card.id == this.props.match.params.id
+    //   })[0]
+    //   console.log(card)
+    //   this.setState({
+    //     card : card
+    //   })
+    //   this.setState ({
+    //   cardlist: globalState.cardlist
+    // })
+  }
      
-
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
           return false
