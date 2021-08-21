@@ -9,7 +9,6 @@ class Cardlist extends Component {
     super()
       this.state = {
         cardlist: [],
-        id: ''
     }
   }
 componentDidMount() {
@@ -35,16 +34,19 @@ deleteClick = (id) => {
          payload: id
      })
 }
-    render() {    
+    render() {  
+      console.log(this.state)  
         return (
             <div className="purpose_items">
-                {this.state.cardlist.map(item => (
+                {this.state.cardlist.map(item => {
+                  return(
                   <div className="purpose">
                     <div className="purpose_title" key={item.id}>{item.nameTarget}</div>
                     <div className="btn_purpose_item" onClick={()=>this.deleteClick(item.id)}>X</div>
                     <Link to={'/purpose/' + item.id} onClick={()=>this.buttonClick()} className="btn_add_item"></Link>
                   </div>
-                ))}
+                )
+    })}
             </div>
         );
     } 

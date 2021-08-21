@@ -39,12 +39,12 @@ class EditPage extends Component {
             isValid: false,
             savePurpose: false,
        })
-       store.subscribe(() => {
-        let globalState = store.getState();
-        this.setState ({
-          cardlist: globalState.cardlist
-        })
-      })
+      //  store.subscribe(() => {
+      //   let globalState = store.getState();
+      //   this.setState ({
+      //     cardlist: globalState.cardlist
+      //   })
+      // })
     }
     checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
