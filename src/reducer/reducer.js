@@ -1,28 +1,28 @@
 import {addPurpose} from '../components/action/CardAction';
 import {add} from '../components/action/CardAction';
 import {deleted} from '../components/action/CardAction';
-import { edit } from '../components/action/CardAction';
+import { edit, refresh } from '../components/action/CardAction';
 
 let initialState = { 
     cardlist: [
-                { 
-                    id: 1,
-                    nameTarget: "цель1",
-                    requiredAmount: "300000",
-                    targetTerm: "6",
-                    startingAmount: "0",
-                    depositInterest: "5",
-                    taskResult: "12",
-                },
-                { 
-                    id: 2,
-                    nameTarget: "цель2",
-                    requiredAmount: "300000",
-                    targetTerm: "6",
-                    startingAmount: "0",
-                    depositInterest: "5",
-                    taskResult: "12",
-                },
+                // { 
+                //     id: 1,
+                //     nameTarget: "цель1",
+                //     requiredAmount: "300000",
+                //     targetTerm: "6",
+                //     startingAmount: "0",
+                //     depositInterest: "5",
+                //     taskResult: "12",
+                // },
+                // { 
+                //     id: 2,
+                //     nameTarget: "цель2",
+                //     requiredAmount: "300000",
+                //     targetTerm: "6",
+                //     startingAmount: "0",
+                //     depositInterest: "5",
+                //     taskResult: "12",
+                // },
             ],   
         }
 
@@ -73,6 +73,13 @@ function reducer(state = initialState, action) {
         return ({ 
             ...state, cardlist: editWithOutClick
         });
+    }
+    if(action.type === refresh) {
+        let newState = {
+            ...state,
+            cardlist: action.payload
+        }
+        return (newState)
     }
    
       return state;

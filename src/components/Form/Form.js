@@ -122,6 +122,13 @@ class Form extends Component {
             savePurpose: true
           })
           let cardPart = this.state
+
+          // 1. Делаем запрос на добавление новой цели
+          
+          // 2. Делаем запрос на получение всех целей
+
+          // 3. Делаем refresh в reducer (обновляем глобальный стейт)
+
         store.dispatch({
             type: add,
             payload: cardPart,

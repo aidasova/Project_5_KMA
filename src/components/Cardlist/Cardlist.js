@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './Cardlist.css';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
-import { deleted } from '../action/CardAction';
+import { deleted, refresh } from '../action/CardAction';
+import axios from 'axios';
 
 class Cardlist extends Component {
   constructor() {
@@ -11,18 +12,37 @@ class Cardlist extends Component {
         cardlist: [],
     }
   }
+
 componentDidMount() {
-    let globalState = store.getState();
-    console.log(globalState)
-    this.setState ({
-    cardlist: globalState.cardlist
-  })
-  store.subscribe(() => {
-    let globalState = store.getState();
-    this.setState ({
-      cardlist: globalState.cardlist
-    })
-  })
+
+    axios
+      .get(`http://localhost:3010/purpose/all`)
+      .then(res => {
+
+        // отправляем полученные данные в reducer
+        // и в reducer мы сохраняем их в глобальный стейт
+        store.dispatch({
+          type: refresh,
+          payload: [
+            ...res.data
+          ]
+        })
+        console.log(res)
+
+        // получаем данные из глобального стейта 
+        // и обновляем локальный стейт
+        let globalState = store.getState();
+        this.setState ({
+          cardlist: [
+            ...globalState.cardlist
+          ]
+        
+        })
+      })
+      .catch(err => {
+          console.log(err);
+      });
+
 }
 buttonClick = (e) => {
    console.log(this.state)
@@ -35,7 +55,7 @@ deleteClick = (id) => {
      })
 }
     render() {  
-      console.log(this.state)  
+      console.log('state', this.state.cardlist)  
         return (
             <div className="purpose_items">
                 {this.state.cardlist.map(item => {

@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '12345678',
+    password: '12345',
     database: 'bootcamptarget'
 })
 
@@ -16,20 +16,19 @@ connection.connect((err) => {
     }
 })
 
-app.get('/user/:id', (request, response) => {
-    console.log(request.params.id);
-
+app.get('/purpose/all', (request, response) => {
+    
     connection.query('SELECT * FROM targets;', (err, data) => {
         if (err) {
             response.status(404).json('not found');
         }
 
-        console.log(data);
+        // разрешаем принимать запросы с любых адресов
+        response.setHeader('Access-Control-Allow-Origin', "*");
         response.status(200).json(data);
-
     })
 })
 
-app.listen(3000, () => {
+app.listen(3010, () => {
     console.log('Сервер запущен')
 })
