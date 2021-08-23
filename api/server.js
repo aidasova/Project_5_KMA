@@ -16,6 +16,7 @@ connection.connect((err) => {
     }
 })
 
+
 app.get('/purpose/all', (request, response) => {
     
     connection.query('SELECT * FROM targets;', (err, data) => {
