@@ -1,12 +1,15 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '12345',
+    password: '12345678',
     database: 'bootcamptarget'
 })
 
@@ -28,6 +31,28 @@ app.get('/purpose/all', (request, response) => {
         response.setHeader('Access-Control-Allow-Origin', "*");
         response.status(200).json(data);
     })
+})
+
+app.post('/purpose/:id', (request, response) => {
+    
+    response.json(request.body);
+    const {nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult} = request.body;
+
+    connection.query(`
+        INSER INTO targets (nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult)
+        VALUES (${nameTarget}, ${requiredAmount}, ${targetTerm}, ${startingAmount}, ${depositInterest}, ${taskResult});
+        `, 
+    (err, data) => {
+        if(err) {
+            response.status(404).json('not found')
+        }
+        response.setHeader('Access-Control-Allow-Origin', "*");
+        response.status(200).json(data);
+    })
+})
+
+app.put(() => {
+    
 })
 
 app.listen(3010, () => {
