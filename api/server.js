@@ -62,7 +62,7 @@ app.post('/purpose/add', (request, response) => {
 
 app.put('/purpose/editpage/:id', (request, response) => {
     const {nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult} = request.body;
-
+    console.log(request.body)
     connection.query(`
         UPDATE targets 
         SET

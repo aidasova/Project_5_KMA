@@ -122,15 +122,18 @@ class EditPage extends Component {
 
       handlerSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.id)
-        console.log(this.state)
           this.setState({
             savePurpose: true
           })
           axios
-            .put(`http://localhost:3010/purpose/editpage/:id`,
+            .put(`http://localhost:3010/purpose/editpage/${this.state.id}`,
             {
-              id: this.state.id
+                requiredAmount: this.state.requiredAmount,
+                targetTerm: this.state.targetTerm,
+                startingAmount: this.state.startingAmount,
+                depositInterest: this.state.depositInterest,
+                taskResult: this.state.taskResult,
+                nameTarget: this.state.nameTarget,
             })
             .then(response => {
               store.dispatch({
