@@ -3,6 +3,7 @@ import './Form.css';
 import { Link } from 'react-router-dom';
 import store from '../../reducer/store';
 import {add} from '../action/CardAction';
+import axios from 'axios';
 
 // Форма создания Цели *
 class Form extends Component {
@@ -40,6 +41,26 @@ class Form extends Component {
               nameTarget: currentPurpose.nameTarget
             })
             console.log(this.state)
+
+            // axios
+            // .post(`http://localhost:3010/purpose/add`,
+            // {
+            //     id: this.state.id
+            // })
+            // .then(response => {
+            //   store.dispatch({
+            //     type: add,
+            //     payload: [
+            //       ...response.data
+            //     ]
+            //   })
+            //  console.log(response)
+                 
+            // })
+            // .catch(err => {
+            //     console.log(err);
+            // });
+  
     }
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
@@ -123,16 +144,19 @@ class Form extends Component {
           })
           let cardPart = this.state
 
+            store.dispatch({
+              type: add,
+              payload: cardPart,
+          })
+
+
           // 1. Делаем запрос на добавление новой цели
           
           // 2. Делаем запрос на получение всех целей
 
           // 3. Делаем refresh в reducer (обновляем глобальный стейт)
 
-        store.dispatch({
-            type: add,
-            payload: cardPart,
-        })
+        
       }
 
       resultInput(newState) {

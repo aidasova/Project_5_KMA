@@ -28,7 +28,7 @@ componentDidMount() {
           ]
         })
         console.log(res)
-
+        
         // получаем данные из глобального стейта 
         // и обновляем локальный стейт
         let globalState = store.getState();
