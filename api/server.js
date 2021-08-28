@@ -57,12 +57,22 @@ app.post('/purpose/add', (request, response) => {
     })
 })
 
-app.put('/purpose/EditPage/:id', (request, response) => {
+app.put('/purpose/editpage/:id', (request, response) => {
     const {nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult} = request.body;
 
-    connection.query(`UPDATE targets SET (nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult)
-    VALUES ('${nameTarget}', ${requiredAmount}, ${targetTerm}, ${startingAmount}, ${depositInterest}, ${taskResult});`, 
+    connection.query(`
+        UPDATE targets 
+        SET
+            nameTarget = '${nameTarget}',
+            requiredAmount = ${requiredAmount},
+            targetTerm = ${targetTerm},
+            startingAmount = ${startingAmount},
+            depositInterest = ${depositInterest},
+            taskResult = ${taskResult}
+        WHERE id = ${request.params.id}
+        ;`, 
     (err, data) => {
+        console.log(data, err)
         if(err) {
             response.status(401).status('Не получилось обновить')
             return
