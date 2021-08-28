@@ -41,8 +41,11 @@ app.get('/purpose/all', (request, response) => {
 
 app.post('/purpose/add', (request, response) => {
     
-    const {id, nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult} = request.body;
-    
+    const {nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult} = request.body;
+    console.log(`
+    INSERT INTO targets (nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult)
+    VALUES ('${nameTarget}', ${requiredAmount}, ${targetTerm}, ${startingAmount}, ${depositInterest}, ${taskResult});
+    `)
     connection.query(`
         INSERT INTO targets (nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult)
         VALUES ('${nameTarget}', ${requiredAmount}, ${targetTerm}, ${startingAmount}, ${depositInterest}, ${taskResult});

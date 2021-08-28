@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './EditPage.css';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
+import axios from 'axios';    
 import { edit } from '../../components/action/CardAction';
 
 class EditPage extends Component {
@@ -126,11 +127,23 @@ class EditPage extends Component {
           this.setState({
             savePurpose: true
           })
-          let cardPart = this.state
-       store.dispatch({
-            type: edit,
-            payload: cardPart,
-        })
+          axios
+            .put(`http://localhost:3010/purpose/editpage/:id`,
+            {
+              id: this.state.id
+            })
+            .then(response => {
+              store.dispatch({
+                type: edit,
+                payload: [
+                  ...response.data
+                ]
+              })
+              console.log(response)
+            })
+            .catch(err => {
+              console.log(err)
+            })
       }
 
       resultInput(newState) {
