@@ -48,11 +48,26 @@ buttonClick = (e) => {
    console.log(this.state)
   }
 deleteClick = (id) => {
-    console.log(id)    
-     store.dispatch({
-         type: deleted,
-         payload: id
-     })
+    console.log(id) 
+    axios.delete('/purpose/delete/' + id)
+    .then(res => {
+      console.log(res)
+      console.log(res.data)
+
+      store.dispatch({
+        type: deleted,
+        payload: [...res.data] 
+      })
+      console.log(res)
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
+    //  store.dispatch({
+    //      type: deleted,
+    //      payload: id
+    //  })
 }
     render() {  
       console.log('state', this.state.cardlist)  

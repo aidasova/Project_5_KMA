@@ -41,26 +41,7 @@ class Form extends Component {
               nameTarget: currentPurpose.nameTarget
             })
             console.log(this.state)
-
-            // axios
-            // .post(`http://localhost:3010/purpose/add`,
-            // {
-            //     id: this.state.id
-            // })
-            // .then(response => {
-            //   store.dispatch({
-            //     type: add,
-            //     payload: [
-            //       ...response.data
-            //     ]
-            //   })
-            //  console.log(response)
-                 
-            // })
-            // .catch(err => {
-            //     console.log(err);
-            // });
-  
+      
     }
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
@@ -144,19 +125,32 @@ class Form extends Component {
           })
           let cardPart = this.state
 
-            store.dispatch({
-              type: add,
-              payload: cardPart,
-          })
+          //   store.dispatch({
+          //     type: add,
+          //     payload: cardPart,
+          // })
 
-
-          // 1. Делаем запрос на добавление новой цели
-          
-          // 2. Делаем запрос на получение всех целей
-
-          // 3. Делаем refresh в reducer (обновляем глобальный стейт)
-
-        
+        axios
+            .post(`http://localhost:3010/purpose/add`,
+            {
+                requiredAmount: this.state.requiredAmount,
+                targetTerm: this.state.targetTerm,
+                startingAmount: this.state.startingAmount,
+                depositInterest: this.state.depositInterest,
+                taskResult: this.state.taskResult,
+                nameTarget: this.state.nameTarget,
+            })
+            .then(response => {
+              store.dispatch({
+                type: add,
+                payload: [
+                  ...response.data
+                ]
+              })      
+            })
+            .catch(err => {
+                console.log(err);
+            });
       }
 
       resultInput(newState) {
