@@ -20,6 +20,7 @@ class EditPage extends Component {
         nameTarget: "",
         isValid: false,
         savePurpose: false,
+        editedPurpose: false
       }
   }
     componentDidMount() {
@@ -136,13 +137,9 @@ class EditPage extends Component {
                 nameTarget: this.state.nameTarget,
             })
             .then(response => {
-              store.dispatch({
-                type: edit,
-                payload: [
-                  ...response.data
-                ]
-              })
-              console.log(response)
+              // выставить флаг editedPurose в true 
+
+              // сделать редирект на страницу подробного описания цели
             })
             .catch(err => {
               console.log(err)

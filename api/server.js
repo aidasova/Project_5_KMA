@@ -85,12 +85,13 @@ app.put('/purpose/editpage/:id', (request, response) => {
         WHERE id = ${request.params.id}
         ;`, 
     (err, data) => {
-        console.log(data, err)
+        // console.log(data, err)
         if(err) {
+            console.log('----', err);
             response.status(401).status('Не получилось обновить')
             return
         }
-        response.setHeader('Access-Control-Allow-Origin', "*");
+        console.log('++++', data);
         response.status(200).json(data);
     })
 
