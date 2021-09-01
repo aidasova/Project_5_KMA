@@ -49,7 +49,7 @@ buttonClick = (e) => {
   }
 deleteClick = (id) => {
     console.log(id) 
-    axios.delete('/purpose/delete/' + id)
+    axios.delete('http://localhost:3010/purpose/delete/' + id)
     .then(res => {
       console.log(res)
       console.log(res.data)
@@ -75,8 +75,8 @@ deleteClick = (id) => {
             <div className="purpose_items">
                 {this.state.cardlist.map(item => {
                   return(
-                  <div className="purpose">
-                    <div className="purpose_title" key={item.id}>{item.nameTarget}</div>
+                  <div className="purpose" key={item.id}>
+                    <div className="purpose_title">{item.nameTarget}</div>
                     <div className="btn_purpose_item" onClick={()=>this.deleteClick(item.id)}>X</div>
                     <Link to={'/purpose/' + item.id} onClick={()=>this.buttonClick()} className="btn_add_item"></Link>
                   </div>

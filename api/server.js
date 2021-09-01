@@ -1,17 +1,20 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const mys = require('mysql');
+let cors = require('cors');
 let config = require('../src/config/config')
 
+app.use(cors());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods', 'GET, POST,OPTIONS, DELETE, PATCH, PUT');
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.header('Access-Control-Allow-Methods', 'GET, POST,OPTIONS, DELETE, PATCH, PUT');
+//     next();
+// });
 
 const connection = mysql.createConnection({
     host: config.host,
@@ -60,12 +63,12 @@ app.post('/purpose/add', (request, response) => {
         response.status(200).json(data);
     })
 })
-app.delete(`/purpose/delete`, (request, response) => {
+app.delete(`/purpose/delete/:id`, (request, response) => {
     console.log(request)
-   console.log(`DELETE FROM targets WHERE id = ${id}'
+   console.log(`DELETE FROM targets WHERE id = ${request.params.id}'
    `)
     console.log(request.body)
-    connection.query(`DELETE FROM targets WHERE id = ${id}
+    connection.query(`DELETE FROM targets WHERE id = ${request.params.id}
     `, (err, data) => {
         if(err) {
             response.status(404).json('not found');

@@ -23,7 +23,7 @@ let initialState = {
                 //     depositInterest: "5",
                 //     taskResult: "12",
                 // },
-            ],   
+            ],          
         }
 
 function reducer(state = initialState, action) {

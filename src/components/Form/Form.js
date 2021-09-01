@@ -29,19 +29,18 @@ class Form extends Component {
             const globalState = store.getState(); 
             console.log(globalState)
             const maxId = globalState.cardlist.reduce((max, item) => item.id > max ? item.id : max, 0);
-            const currentPurpose =globalState.cardlist.find((item) => {
+            const currentPurpose = globalState.cardlist.find((item) => {
               if (item.id === maxId) {
                 return item;
               }
             });
-
+            console.log(currentPurpose)
             console.log(maxId)
             this.setState({
               id: currentPurpose.id,
               nameTarget: currentPurpose.nameTarget
             })
             console.log(this.state)
-      
     }
       checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
@@ -123,7 +122,7 @@ class Form extends Component {
           this.setState({
             savePurpose: true
           })
-          let cardPart = this.state
+        //  let cardPart = this.state
 
           //   store.dispatch({
           //     type: add,
