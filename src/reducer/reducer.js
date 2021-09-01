@@ -59,7 +59,7 @@ function reducer(state = initialState, action) {
     }
     if(action.type === deleted) {
         let idToRemove = state.cardlist.filter((item) => {
-            return item.id !== action.payload
+            return item.id !== action.payload.id
         });
         console.log(idToRemove)
 

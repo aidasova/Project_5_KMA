@@ -64,7 +64,9 @@ deleteClick = (id) => {
 
       store.dispatch({
         type: deleted,
-        payload: [...res.data] 
+        payload: {
+          id: id 
+        } 
       })
       console.log(res)
 
@@ -78,15 +80,7 @@ deleteClick = (id) => {
     //      payload: id
     //  })
 }
-// componentWillMount(){
-//   axios.get('http://localhost:3010/purpose/delete/')
-//   .then(res=>{
-//     let datares = res.data
-//       this.setState({
-//         datares
-//       })
-//   })
-// }
+
     render() {  
       console.log('state', this.state.cardlist)  
         return (
