@@ -14,6 +14,12 @@ class Cardlist extends Component {
   }
 
 componentDidMount() {
+  store.subscribe(() => {
+    const globalState = store.getState(); //получить данные из глобального состояния
+    this.setState({   //обновить локальное состояние
+        cardlist: globalState.cardlist
+    })
+})
 
     axios
       .get(`http://localhost:3010/purpose/all`)
@@ -46,8 +52,10 @@ componentDidMount() {
 }
 buttonClick = (e) => {
    console.log(this.state)
+  
   }
 deleteClick = (id) => {
+
     console.log(id) 
     axios.delete('http://localhost:3010/purpose/delete/' + id)
     .then(res => {
@@ -59,16 +67,26 @@ deleteClick = (id) => {
         payload: [...res.data] 
       })
       console.log(res)
+
     })
     .catch(err => {
         console.log(err);
     });
-
+    
     //  store.dispatch({
     //      type: deleted,
     //      payload: id
     //  })
 }
+// componentWillMount(){
+//   axios.get('http://localhost:3010/purpose/delete/')
+//   .then(res=>{
+//     let datares = res.data
+//       this.setState({
+//         datares
+//       })
+//   })
+// }
     render() {  
       console.log('state', this.state.cardlist)  
         return (

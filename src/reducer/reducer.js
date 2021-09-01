@@ -30,9 +30,13 @@ function reducer(state = initialState, action) {
     console.log(action)
     console.log(state)
 
-    if(action.type === addPurpose) {  
-        let maxId = Math.max.apply(null, state.cardlist.map(item => item.id))
-        console.log(maxId)
+    if(action.type === addPurpose) { 
+        let maxId = 0;
+        state.cardlist.forEach((value) => {
+            if(value.id > maxId){
+                maxId = value.id
+            }
+        })
         action.payload.id = +maxId + 1;
         console.log(action.payload.id)
         state.cardlist.push(action.payload)
