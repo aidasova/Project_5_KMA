@@ -7,20 +7,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
-// по дефолту значения CORS такие: 
-// {
-//     "origin": "*",
-//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     "preflightContinue": false,
-//     "optionsSuccessStatus": 204
-// }
-
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
-
 
 const connection = mysql.createConnection({
     host: config.host,
@@ -85,13 +71,10 @@ app.put('/purpose/editpage/:id', (request, response) => {
         WHERE id = ${request.params.id}
         ;`, 
     (err, data) => {
-        // console.log(data, err)
         if(err) {
-            console.log('----', err);
             response.status(401).status('Не получилось обновить')
             return
         }
-        console.log('++++', data);
         response.status(200).json(data);
     })
 

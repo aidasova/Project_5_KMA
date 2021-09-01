@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './EditPage.css';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
-import axios from 'axios';    
-import { edit } from '../../components/action/CardAction';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class EditPage extends Component {
   constructor() {
@@ -138,8 +138,9 @@ class EditPage extends Component {
             })
             .then(response => {
               // выставить флаг editedPurose в true 
-
+              this.setState({editedPurpose: false})
               // сделать редирект на страницу подробного описания цели
+              
             })
             .catch(err => {
               console.log(err)
@@ -221,9 +222,9 @@ class EditPage extends Component {
                           />
                       </label>
                       {this.state.savePurpose
-                      ?  <button type="submit" className="form_submit_save">Цель изменена</button>
+                      ?  <Redirect to={"/purpose/" + this.state.id}></Redirect>
                       :
-                       <button type="submit" className="form_submit">Сохранить изменения цели</button>}
+                      <button type="submit" className="form_submit">Сохранить изменения цели</button>}
                   </form>
                   <Link to={'/'} className="form_btn_new">На главную</Link> 
               </div>
