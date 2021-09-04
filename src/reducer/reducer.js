@@ -4,36 +4,11 @@ import {deleted} from '../components/action/CardAction';
 import { edit, refresh } from '../components/action/CardAction';
 
 let initialState = { 
-<<<<<<< HEAD
-    cardlist: [
-                // { 
-                //     id: 1,
-                //     nameTarget: "цель1",
-                //     requiredAmount: "300000",
-                //     targetTerm: "6",
-                //     startingAmount: "0",
-                //     depositInterest: "5",
-                //     taskResult: "12",
-                // },
-                // { 
-                //     id: 2,
-                //     nameTarget: "цель2",
-                //     requiredAmount: "300000",
-                //     targetTerm: "6",
-                //     startingAmount: "0",
-                //     depositInterest: "5",
-                //     taskResult: "12",
-                // },
-            ],          
-        }
-=======
     cardlist: [],   
     }
->>>>>>> origin/put_server_EditPage
 
 function reducer(state = initialState, action) {
 
-<<<<<<< HEAD
     if(action.type === addPurpose) { 
         let maxId = 0;
         state.cardlist.forEach((value) => {
@@ -41,10 +16,6 @@ function reducer(state = initialState, action) {
                 maxId = value.id
             }
         })
-=======
-    if(action.type === addPurpose) {  
-        let maxId = Math.max.apply(null, state.cardlist.map(item => item.id))
->>>>>>> origin/put_server_EditPage
         action.payload.id = +maxId + 1;
         state.cardlist.push(action.payload)
         return {
@@ -101,13 +72,9 @@ function reducer(state = initialState, action) {
         return (newState)
     }
    
-<<<<<<< HEAD
 
     
       return state;
-=======
-    return state;
->>>>>>> origin/put_server_EditPage
 }
 
 export default reducer;

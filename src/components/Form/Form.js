@@ -33,12 +33,8 @@ class Form extends Component {
                 return item;
               }
             });
-<<<<<<< HEAD
             console.log(currentPurpose)
             console.log(maxId)
-=======
-
->>>>>>> origin/put_server_EditPage
             this.setState({
               id: currentPurpose.id,
               nameTarget: currentPurpose.nameTarget
