@@ -8,6 +8,12 @@ class PurposePage extends Component {
         card: ''
       }
     componentDidMount() {
+      store.subscribe(() => {
+        let globalState = store.getState();
+        this.setState ({
+          card: globalState.cardlist
+        })
+      })
         let globalState = store.getState();
         console.log(globalState)
         let card = globalState.cardlist.filter(card => {
@@ -23,7 +29,6 @@ class PurposePage extends Component {
     }
     render() { 
     console.log(this.props.match)
-    //console.log(this.state)
 
         return (
             <div className="purpose_items_id">

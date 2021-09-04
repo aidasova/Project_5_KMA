@@ -4,6 +4,7 @@ import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { edit } from '../../components/action/CardAction'
 
 class EditPage extends Component {
   constructor() {
@@ -25,11 +26,9 @@ class EditPage extends Component {
   }
     componentDidMount() {
         let globalState = store.getState();
-        console.log(globalState)
         let card = globalState.cardlist.filter(card => {
           return card.id === +this.props.match.params.id
         })[0]
-        console.log(card)
         this.setState({
             id: card.id,
             nameTarget: card.nameTarget,
@@ -41,12 +40,6 @@ class EditPage extends Component {
             isValid: false,
             savePurpose: false,
        })
-      //  store.subscribe(() => {
-      //   let globalState = store.getState();
-      //   this.setState ({
-      //     cardlist: globalState.cardlist
-      //   })
-      // })
     }
     checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
@@ -137,7 +130,19 @@ class EditPage extends Component {
                 nameTarget: this.state.nameTarget,
             })
             .then(response => {
-              // выставить флаг editedPurose в true 
+              store.dispatch({
+                type: edit,
+                payload: {
+                  id: this.state.id,
+                  requiredAmount: this.state.requiredAmount,
+                  targetTerm: this.state.targetTerm,
+                  startingAmount: this.state.startingAmount,
+                  depositInterest: this.state.depositInterest,
+                  taskResult: this.state.taskResult,
+                  nameTarget: this.state.nameTarget,
+                }
+              })
+
               this.setState({editedPurpose: false})
               // сделать редирект на страницу подробного описания цели
               
