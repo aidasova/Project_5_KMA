@@ -27,7 +27,6 @@ componentDidMount() {
             ...res.data
           ]
         })
-        console.log(res)
 
         // получаем данные из глобального стейта 
         // и обновляем локальный стейт
@@ -45,17 +44,17 @@ componentDidMount() {
 
 }
 buttonClick = (e) => {
-   console.log(this.state)
+   
   }
 deleteClick = (id) => {
-    console.log(id)    
+      
      store.dispatch({
          type: deleted,
          payload: id
      })
 }
     render() {  
-      console.log('state', this.state.cardlist)  
+      
         return (
             <div className="purpose_items">
                 {this.state.cardlist.map(item => {

@@ -11,7 +11,6 @@ function reducer(state = initialState, action) {
 
     if(action.type === addPurpose) {  
         let maxId = Math.max.apply(null, state.cardlist.map(item => item.id))
-        console.log(maxId)
         action.payload.id = +maxId + 1;
         state.cardlist.push(action.payload)
         return {
@@ -57,14 +56,7 @@ function reducer(state = initialState, action) {
 
         // 3. Перезаписать глобальный на новые значения после их изменения
 
-        let editWithOutClick = state.cardlist.filter((item) => {
-             return item.id !== action.payload.id
-         })
-         editWithOutClick.push(action.payload)
-
-        return ({ 
-            ...state, cardlist: editWithOutClick
-        });
+        return newState;
     }
     
     if(action.type === refresh) {

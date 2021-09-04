@@ -10,25 +10,27 @@ class PurposePage extends Component {
     componentDidMount() {
       store.subscribe(() => {
         let globalState = store.getState();
+
+        // 1. С помощью find найти из globalState.cardlist объект с данными по отображаемой цели
+
+        // 2. Записать его в this.state.card
+
         this.setState ({
           card: globalState.cardlist
         })
       })
-        let globalState = store.getState();
-        console.log(globalState)
-        let card = globalState.cardlist.filter(card => {
-          return card.id == this.props.match.params.id
-        })[0]
-        console.log(card)
-        this.setState({
-          card : card
-        })
+
+      let globalState = store.getState();
+      let card = globalState.cardlist.filter(card => {
+        return card.id == this.props.match.params.id
+      })[0]
+      this.setState({
+        card : card
+      })
     }
     purposeClick() {
-        console.log(this.state)
     }
     render() { 
-    console.log(this.props.match)
 
         return (
             <div className="purpose_items_id">

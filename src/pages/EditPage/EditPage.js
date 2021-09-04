@@ -79,8 +79,6 @@ class EditPage extends Component {
             monthlyPayment = this.resultInput(newState);
           } 
 
-          console.log(monthlyPayment)
-
           this.setState({ 
             [name]: initialValue ? initialValue : value,
             taskResult: monthlyPayment > 0 ? monthlyPayment : '',
