@@ -22,17 +22,14 @@ class Main extends Component {
         })
       }
     changeHandler = (e) => {
-        console.log(e.target.value)
         let inputText = e.target.value
         this.setState({
             nameTarget: inputText,
         });
-        console.log(e.target.value)
     }
        
     buttonClick = (e) => {
        // e.preventDefault();
-        console.log(this.state)
         const dataPurpose =  this.state
         store.dispatch({
             type: addPurpose,

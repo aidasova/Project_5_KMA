@@ -8,22 +8,32 @@ class PurposePage extends Component {
         card: ''
       }
     componentDidMount() {
+      store.subscribe(() => {
         let globalState = store.getState();
-        console.log(globalState)
-        let card = globalState.cardlist.filter(card => {
-          return card.id == this.props.match.params.id
-        })[0]
-        console.log(card)
-        this.setState({
-          card : card
+
+        // 1. С помощью find найти из globalState.cardlist объект с данными по отображаемой цели
+        let dataToUpdate = globalState.cardlist.find((item) => {
+          return item.id == this.props.match.params.id
         })
+        console.log(dataToUpdate)
+        // 2. Записать его в this.state.card
+
+        this.setState ({
+          card: dataToUpdate
+        })
+      })
+
+      let globalState = store.getState();
+      let card = globalState.cardlist.filter(card => {
+        return card.id == this.props.match.params.id
+      })[0]
+      this.setState({
+        card : card
+      })
     }
     purposeClick() {
-        console.log(this.state)
     }
     render() { 
-    console.log(this.props.match)
-    //console.log(this.state)
 
         return (
             <div className="purpose_items_id">

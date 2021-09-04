@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import './EditPage.css';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import { edit } from '../../components/action/CardAction';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+=======
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import { edit } from '../../components/action/CardAction'
+>>>>>>> origin/put_server_EditPage
 
 class EditPage extends Component {
   constructor() {
@@ -26,11 +32,9 @@ class EditPage extends Component {
   }
     componentDidMount() {
         let globalState = store.getState();
-        console.log(globalState)
         let card = globalState.cardlist.filter(card => {
           return card.id === +this.props.match.params.id
         })[0]
-        console.log(card)
         this.setState({
             id: card.id,
             nameTarget: card.nameTarget,
@@ -42,7 +46,10 @@ class EditPage extends Component {
             isValid: false,
             savePurpose: false,
        })
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/put_server_EditPage
     }
     checkAllInputsNotEpmty(newState)  {
         if (newState.requiredAmount === "") {
@@ -82,8 +89,6 @@ class EditPage extends Component {
             monthlyPayment = this.resultInput(newState);
           } 
 
-          console.log(monthlyPayment)
-
           this.setState({ 
             [name]: initialValue ? initialValue : value,
             taskResult: monthlyPayment > 0 ? monthlyPayment : '',
@@ -119,11 +124,10 @@ class EditPage extends Component {
 
       handlerSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.id)
-        console.log(this.state)
           this.setState({
             savePurpose: true
           })
+<<<<<<< HEAD
       //     let cardPart = this.state
       //  store.dispatch({
       //       type: edit,
@@ -148,6 +152,39 @@ class EditPage extends Component {
       .catch(err => {
         console.log(err)
       })
+=======
+          axios
+            .put(`http://localhost:3010/purpose/editpage/${this.state.id}`,
+            {
+                requiredAmount: this.state.requiredAmount,
+                targetTerm: this.state.targetTerm,
+                startingAmount: this.state.startingAmount,
+                depositInterest: this.state.depositInterest,
+                taskResult: this.state.taskResult,
+                nameTarget: this.state.nameTarget,
+            })
+            .then(response => {
+              store.dispatch({
+                type: edit,
+                payload: {
+                  id: this.state.id,
+                  requiredAmount: this.state.requiredAmount,
+                  targetTerm: this.state.targetTerm,
+                  startingAmount: this.state.startingAmount,
+                  depositInterest: this.state.depositInterest,
+                  taskResult: this.state.taskResult,
+                  nameTarget: this.state.nameTarget,
+                }
+              })
+
+              this.setState({editedPurpose: false})
+              // сделать редирект на страницу подробного описания цели
+              
+            })
+            .catch(err => {
+              console.log(err)
+            })
+>>>>>>> origin/put_server_EditPage
       }
 
       resultInput(newState) {
@@ -227,7 +264,7 @@ class EditPage extends Component {
                       {this.state.savePurpose
                       ?  <Redirect to={"/purpose/" + this.state.id}></Redirect>
                       :
-                       <button type="submit" className="form_submit">Сохранить изменения цели</button>}
+                      <button type="submit" className="form_submit">Сохранить изменения цели</button>}
                   </form>
                   <Link to={'/'} className="form_btn_new">На главную</Link> 
               </div>

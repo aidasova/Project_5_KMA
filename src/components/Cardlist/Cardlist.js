@@ -33,8 +33,12 @@ componentDidMount() {
             ...res.data
           ]
         })
+<<<<<<< HEAD
         console.log(res)
         
+=======
+
+>>>>>>> origin/put_server_EditPage
         // получаем данные из глобального стейта 
         // и обновляем локальный стейт
         let globalState = store.getState();
@@ -51,6 +55,7 @@ componentDidMount() {
 
 }
 buttonClick = (e) => {
+<<<<<<< HEAD
    console.log(this.state)
   
   }
@@ -79,16 +84,30 @@ deleteClick = (id) => {
     //      type: deleted,
     //      payload: id
     //  })
+=======
+   
+  }
+deleteClick = (id) => {
+      
+     store.dispatch({
+         type: deleted,
+         payload: id
+     })
+>>>>>>> origin/put_server_EditPage
 }
 
     render() {  
-      console.log('state', this.state.cardlist)  
+      
         return (
             <div className="purpose_items">
                 {this.state.cardlist.map(item => {
                   return(
                   <div className="purpose" key={item.id}>
+<<<<<<< HEAD
                     <div className="purpose_title">{item.nameTarget}</div>
+=======
+                    <div className="purpose_title" >{item.nameTarget}</div>
+>>>>>>> origin/put_server_EditPage
                     <div className="btn_purpose_item" onClick={()=>this.deleteClick(item.id)}>X</div>
                     <Link to={'/purpose/' + item.id} onClick={()=>this.buttonClick()} className="btn_add_item"></Link>
                   </div>

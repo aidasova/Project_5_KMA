@@ -4,6 +4,7 @@ import {deleted} from '../components/action/CardAction';
 import { edit, refresh } from '../components/action/CardAction';
 
 let initialState = { 
+<<<<<<< HEAD
     cardlist: [
                 // { 
                 //     id: 1,
@@ -25,11 +26,14 @@ let initialState = {
                 // },
             ],          
         }
+=======
+    cardlist: [],   
+    }
+>>>>>>> origin/put_server_EditPage
 
 function reducer(state = initialState, action) {
-    console.log(action)
-    console.log(state)
 
+<<<<<<< HEAD
     if(action.type === addPurpose) { 
         let maxId = 0;
         state.cardlist.forEach((value) => {
@@ -37,15 +41,17 @@ function reducer(state = initialState, action) {
                 maxId = value.id
             }
         })
+=======
+    if(action.type === addPurpose) {  
+        let maxId = Math.max.apply(null, state.cardlist.map(item => item.id))
+>>>>>>> origin/put_server_EditPage
         action.payload.id = +maxId + 1;
-        console.log(action.payload.id)
         state.cardlist.push(action.payload)
         return {
             ...state, cardlist: state.cardlist
         }
     }   
-    if(action.type === add) { 
-        console.log(action.payload.id)
+    if(action.type === add) {
           let res = state.cardlist.map((item) => {
             if(item.id === action.payload.id) {
                return item = {...item, ...action.payload}
@@ -61,23 +67,32 @@ function reducer(state = initialState, action) {
         let idToRemove = state.cardlist.filter((item) => {
             return item.id !== action.payload.id
         });
-        console.log(idToRemove)
-
         return ({ 
             cardlist: idToRemove
         });
     }
+    
     if(action.type === edit) {
-        let editWithOutClick = state.cardlist.filter((item) => {
-             return item.id !== action.payload.id
-         })
-         console.log(editWithOutClick)
-         editWithOutClick.push(action.payload)
+        
+        // 1. Найти в state.cardList элемент с id, который нам передали
+        
+        // 2. В полученном объекте поменять все свойства на переданные
+        let dataToUpdate = action.payload
+        let newUpdate = state.cardlist.map((item) => {
+            if (item.id === dataToUpdate.id ) {
+                return dataToUpdate
+            }
+            return item 
+        })
+        let newState = {...state}
+        newState.cardlist = newUpdate
+        console.log(newState)
 
-        return ({ 
-            ...state, cardlist: editWithOutClick
-        });
+        // 3. Перезаписать глобальный на новые значения после их изменения
+
+        return newState;
     }
+    
     if(action.type === refresh) {
         let newState = {
             ...state,
@@ -86,9 +101,13 @@ function reducer(state = initialState, action) {
         return (newState)
     }
    
+<<<<<<< HEAD
 
     
       return state;
+=======
+    return state;
+>>>>>>> origin/put_server_EditPage
 }
 
 export default reducer;
