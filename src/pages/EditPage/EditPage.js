@@ -3,6 +3,8 @@ import './EditPage.css';
 import store from '../../reducer/store';
 import { Link } from 'react-router-dom';
 import { edit } from '../../components/action/CardAction';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class EditPage extends Component {
   constructor() {
@@ -19,6 +21,7 @@ class EditPage extends Component {
         nameTarget: "",
         isValid: false,
         savePurpose: false,
+        editedPurpose: false
       }
   }
     componentDidMount() {
@@ -121,11 +124,30 @@ class EditPage extends Component {
           this.setState({
             savePurpose: true
           })
-          let cardPart = this.state
-       store.dispatch({
-            type: edit,
-            payload: cardPart,
-        })
+      //     let cardPart = this.state
+      //  store.dispatch({
+      //       type: edit,
+      //       payload: cardPart,
+      //   })
+      axios
+      .put(`http://localhost:3010/purpose/editpage/${this.state.id}`,
+      {
+          requiredAmount: this.state.requiredAmount,
+          targetTerm: this.state.targetTerm,
+          startingAmount: this.state.startingAmount,
+          depositInterest: this.state.depositInterest,
+          taskResult: this.state.taskResult,
+          nameTarget: this.state.nameTarget,
+      })
+      .then(response => {
+        // выставить флаг editedPurose в true 
+        this.setState({editedPurpose: false})
+        // сделать редирект на страницу подробного описания цели
+        
+      })
+      .catch(err => {
+        console.log(err)
+      })
       }
 
       resultInput(newState) {
@@ -203,7 +225,7 @@ class EditPage extends Component {
                           />
                       </label>
                       {this.state.savePurpose
-                      ?  <button type="submit" className="form_submit_save">Цель изменена</button>
+                      ?  <Redirect to={"/purpose/" + this.state.id}></Redirect>
                       :
                        <button type="submit" className="form_submit">Сохранить изменения цели</button>}
                   </form>

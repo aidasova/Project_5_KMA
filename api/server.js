@@ -1,20 +1,12 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
-const mys = require('mysql');
 let cors = require('cors');
 let config = require('../src/config/config')
 
 app.use(cors());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     res.header('Access-Control-Allow-Methods', 'GET, POST,OPTIONS, DELETE, PATCH, PUT');
-//     next();
-// });
 
 const connection = mysql.createConnection({
     host: config.host,
@@ -78,7 +70,29 @@ app.delete(`/purpose/delete/:id`, (request, response) => {
         response.status(200).json(data);
     })
 })
+app.put('/purpose/editpage/:id', (request, response) => {
+    const {nameTarget, requiredAmount, targetTerm, startingAmount, depositInterest, taskResult} = request.body;
+    console.log(request.body)
+    connection.query(`
+        UPDATE targets 
+        SET
+            nameTarget = '${nameTarget}',
+            requiredAmount = ${requiredAmount},
+            targetTerm = ${targetTerm},
+            startingAmount = ${startingAmount},
+            depositInterest = ${depositInterest},
+            taskResult = ${taskResult}
+        WHERE id = ${request.params.id}
+        ;`, 
+    (err, data) => {
+        if(err) {
+            response.status(401).status('Не получилось обновить')
+            return
+        }
+        response.status(200).json(data);
+    })
 
+})
 
 app.listen(3010, () => {
     console.log('Сервер запущен')
