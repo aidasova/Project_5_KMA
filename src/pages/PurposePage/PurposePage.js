@@ -12,11 +12,14 @@ class PurposePage extends Component {
         let globalState = store.getState();
 
         // 1. С помощью find найти из globalState.cardlist объект с данными по отображаемой цели
-
+        let dataToUpdate = globalState.cardlist.find((item) => {
+          return item.id == this.props.match.params.id
+        })
+        console.log(dataToUpdate)
         // 2. Записать его в this.state.card
 
         this.setState ({
-          card: globalState.cardlist
+          card: dataToUpdate
         })
       })
 
